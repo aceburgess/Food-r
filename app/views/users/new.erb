@@ -1,9 +1,9 @@
 <div class="container">
-<form action="/users/create" method="post">
+<form action="/users" method="post">
     <h3>Create an Account<h3> <br>
-    Your Name: <input type="string" name="name" placeholder="Name Here"> <br>
-    Your Email: <input type="text" name="email" placeholder="Email Here"> <br>
-    Your Password: <input type="password" name="password"><br>
+    Your Name: <input type="string" name="user[name]" placeholder="Name Here"> <br>
+    Your Email: <input type="email" name="user[email]" placeholder="Email Here"> <br>
+    Your Password: <input type="password" name="user[password]"><br>
     <input type="submit" value="Create Account">
   </form>
 </div>

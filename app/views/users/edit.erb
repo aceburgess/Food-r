@@ -3,9 +3,9 @@
   <form action="/users/<%=current_user.id%>/edit" method="post">
     <h3>Update Your Information Here<h3> <br>
     <input type="hidden" name="_method" value="put">
-    <input type="string" name="name" value="<%=current_user.name%>"> <br>
-    <input type="text" name="email" value="<%=current_user.email%>"> <br>
-    <input type="string" name="password" value=""><br>
+    <input type="string" name="user[name]" value="<%=current_user.name%>"> <br>
+    <input type="email" name="user[email]" value="<%=current_user.email%>"> <br>
+    <input type="password" name="user[password]" value=""><br>
     <input type="submit" value="Update User Info">
   </form>
 </div>
