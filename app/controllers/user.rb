@@ -24,7 +24,7 @@ get '/users/:id' do |id|
   erb :'/users/show', locals: {current_user: current_user}
 end
 
-get '/users/:id/settings' do |id|
+get '/users/:id/edit' do |id|
   current_user = User.find(id)
   return [500, "That user does not exist"] unless current_user
    erb :'/users/edit', locals: {current_user: current_user}
@@ -35,9 +35,9 @@ post '/users/:id/delete' do |id|
   current_user.delete
 end
 
-post '/users/:id/update' do
-  current_user = User.find_by(id: params[:id])
-  current_user.update(name: params[:name], params[:email], params[:password])
+post '/users/:id/update' do |id|
+  current_user = User.find(id)
+  current_user.update(name: params[:name], email: params[:email], password: params[:password])
 end
 
 # Validation for the creation of a new User object
