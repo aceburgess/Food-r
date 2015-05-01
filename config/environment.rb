@@ -16,6 +16,8 @@ require 'active_record'
 require 'logger'
 require 'pry'
 require 'bcrypt'
+require 'dotenv'; Dotenv.load # require and load DotENV
+require 'yelp'
 
 require 'sinatra'
 require "sinatra/reloader" if development?

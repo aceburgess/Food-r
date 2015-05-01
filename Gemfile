@@ -10,7 +10,15 @@ gem 'sinatra-contrib'
 
 # Use Thin for our web server
 gem 'thin'
+
+# Bcrypt
 gem 'bcrypt-ruby'
+
+# Yelp
+gem 'yelp'
+
+# DotEnv
+gem 'dotenv'
 
 gem 'activesupport', '~>4.1'
 gem 'activerecord', '~>4.1'
