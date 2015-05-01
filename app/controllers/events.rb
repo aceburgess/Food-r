@@ -3,7 +3,7 @@ get '/events' do
 	erb :"events/index" , locals: {events: events}
 end
 
-post '/event/create' do 
+post '/event/create' do
 	event = Event.new(params[:event])
 	return [500,"Couldn't create event #{params[:event][:title]}"] unless event.save
 	redirect '/events'
@@ -21,14 +21,14 @@ get '/event/update/:id' do
 end
 
 put '/event/:id' do
-	event = Event.find_by(id: params[:id])	
+	event = Event.find_by(id: params[:id])
 	return [500,"Couldn't find event"] unless event
 	event.update_attributes(params[:event])
 	redirect '/events'
 end
 
 delete '/event/:id' do
-	event = Event.find_by(id: params[:id])	
+	event = Event.find_by(id: params[:id])
 	return [500,"Couldn't find event"] unless event
 	event.destroy
 	redirect '/events'

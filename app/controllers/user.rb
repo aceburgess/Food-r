@@ -30,12 +30,13 @@ get '/users/:id/edit' do |id|
    erb :'/users/edit', locals: {current_user: current_user}
 end
 
-post '/users/:id/delete' do |id|
+delete '/users/:id/delete' do |id|
   current_user = User.find(id)
-  current_user.delete
+  current_user.destroy
+  redirect '/users'
 end
 
-post '/users/:id/update' do |id|
+put '/users/:id/update' do |id|
   current_user = User.find(id)
   current_user.update(name: params[:name], email: params[:email], password: params[:password])
 end
