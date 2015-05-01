@@ -7,5 +7,9 @@
     <input type="email" name="user[email]" value="<%=current_user.email%>"> <br>
     <input type="password" name="user[password]" value=""><br>
     <input type="submit" value="Update User Info">
-  </form>
+  </form><br>
+  <form action='/users/<%= current_user.id %>/delete' method="post">
+  <input type="hidden" name="_method" value="delete"><br>
+  <input type="submit" value="Delete Your Account FOREVER">
+</form>
 </div>
