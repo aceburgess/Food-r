@@ -79,6 +79,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord (~> 4.1)
   activesupport (~> 4.1)
+  bcrypt-ruby
   faker
   pg
   pry
