@@ -4,6 +4,10 @@
 <div><%= event.group.name %></div>
 <ul>
 <% event.restaurants.each do |restaurant| %>
-	<li><a href="<%= restaurant.url %>" ><%= restaurant.name %></a></li>
+	<li><a href="<%= restaurant.url %>" ><%= restaurant.name %></a>
+		<form action="event/<%= event.id %>/restaurant/<%= restaurant.id %>/vote" method="post">				
+			<input type="submit" value="vote"/>
+		</form>
+	</li>
 <% end %>
 </ul>
