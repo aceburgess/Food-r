@@ -3,6 +3,10 @@ get '/events' do
 	erb :"events/index" , locals: {events: events}
 end
 
+get '/events/new' do
+	erb :"/events/add", locals: { action: "/event/create"}
+end
+
 post '/event/create' do
 	event = Event.new(params[:event])
 	return [500,"Couldn't create event #{params[:event][:title]}"] unless event.save
