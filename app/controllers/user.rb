@@ -36,11 +36,15 @@ end
 
 delete '/users/:id/delete' do
   logged_user.destroy
-  redirect '/users'
+  redirect '/'
 end
 
 put '/users/:id/update' do
-  logged_user.update(params[:user])
+  logged_user.update(name: params[:name], email: params[:email])
+  if logged_user.authenticate(params[:current_password]) && (params[:newpassword1] == params[:newpassword2])
+    logged_user.password=(params[:newpassword1])
+  end
+  redirect '/users?updated=true'
 end
 
 # Validation for the creation of a new User object
