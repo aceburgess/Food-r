@@ -3,9 +3,16 @@
   <form action="/users/<%=logged_user.id%>/update" method="post">
     <h3>Update Your Information Here<h3> <br>
     <input type="hidden" name="_method" value="put">
-    <input type="string" name="user[name]" value="<%=logged_user.name%>"> <br>
-    <input type="email" name="user[email]" value="<%=logged_user.email%>"> <br>
-    <input type="password" name="user[password]" value=""><br>
+    Name: <br>
+    <input type="string" name="name" value="<%=logged_user.name%>"> <br>
+    Email: <br>
+    <input type="email" name="email" value="<%=logged_user.email%>"> <br>
+    Current Password: <br>
+    <input type="password" name="current_password" ><br>
+    New Password: <br>
+    <input type="password" name="newpassword1"><br>
+    New Password: <br>
+    <input type="password" name="newpassword2"><br>
     <input type="submit" value="Update User Info">
   </form><br>
   <form action='/users/<%= logged_user.id %>/delete' method="post">
