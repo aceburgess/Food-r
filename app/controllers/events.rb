@@ -21,7 +21,7 @@ end
 get '/events/select_restaurants/:event_id' do
 	event = Event.find(params[:event_id])
 	return [500, "Couldn't find event"] unless event
-	local_area = location params
+	local_area = location_hash params
 	local_restaurants = yelp( local_area )
 	erb :"/events/select_restaurants", locals: { event: event, local_restaurants: local_restaurants, local_area: local_area}
 end
