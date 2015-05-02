@@ -1,6 +1,6 @@
 <div class="container">
   <h2>Edit <%= current_user.name %>'s Settings</h2>
-  <form action="/users/<%=current_user.id%>/edit" method="post">
+  <form action="/users/<%=current_user.id%>/update" method="post">
     <h3>Update Your Information Here<h3> <br>
     <input type="hidden" name="_method" value="put">
     <input type="string" name="user[name]" value="<%=current_user.name%>"> <br>
