@@ -1,4 +1,3 @@
-include BCrypt
 get '/users/create' do
   erb :'/users/new'
 end
