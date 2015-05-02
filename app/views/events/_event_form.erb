@@ -8,7 +8,7 @@
 	<input type="text" name="event[penalty]" placeholder="Penalty" value="<%= event.penalty if defined?(event) %>" />
 	<input type="text" name="city" placeholder="City">
 	<input type="text" name="state" placeholder="State">
-	<input type="text" name="zip" placeholder="Zip Code">
+	<input type="text" name="zip_code" placeholder="Zip Code">
 
 	<select name="event[group_id]">
 		<% groups.each do |group| %>
@@ -19,7 +19,6 @@
 			<option value="<%= group.id %>" <%= selected %> ><%= group.name %></option>
 		<% end %>
 	</select>
-	<input type="text" name="event[group]" value="<%= event.group if defined?(event) %>" />
 
 	<input type="submit" value="<%= submit_label %>" />
 </form>
