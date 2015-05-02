@@ -12,19 +12,18 @@ get '/groups/new' do
 end
 
 post '/groups' do
-  p params
-  # new_group = Group.create(name: params[:name], admin_id: session[:user_id], organizer_id: session[:user_id])
+  new_group = Group.create(name: params[:name], admin_id: logged_user.id, organizer_id: logged_user.id)
 
   # split_string = params[:members].split(",").each {|member| member.strip!}
 
-  # member_objects = []
-  # split_string.each do |name|
-  #   member = User.find_by(name: name)
-  #   member_objects << member if member
-  # end
+  member_objects = []
+  params[:members].each do |id|
+    member = User.find(id)
+    member_objects << member if member
+  end
 
-  # new_group.members = member_objects
-  # new_group.save
+  new_group.members = member_objects
+  new_group.save
 
   redirect '/groups'
 end
