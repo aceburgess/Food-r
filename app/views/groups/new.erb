@@ -5,14 +5,27 @@
   <input type='text' name='name' placeholder='group name' />
   <input type='text' id="user_search" placeholder='type member names seperated by comas here' />
   <input type='hidden' id="user" name='members[]' />
-  <input type='submit' value='Create Group' />
+  <input type="button" id="add_user_btn" onclick="javascript:addUser()" value="add user" />
+  <input type='submit'  value='Create Group' />
 </form>
 
 <script type="text/javascript">
 
-function setClientAutoCompleteField(fieldID,options){
+function addUser(){
+	form = $("#group_form input");
+	count = form.length
+	name_id = "user_search_" + count;
+	value_id = "user_" + count;
+	name = "<input type='text' id='" + name_id + "' placeholder='type member names seperated by comas here' />";
+ 	value = "<input type='hidden' id='" + value_id + "' name='members[]' />";
+ 	$("#add_user_btn").before(name + value);
+ 	setClientAutoCompleteField(name_id,value_id,<%= users %>);
+}
+
+function setClientAutoCompleteField(fieldID,valueFieldID,options){
 
 	fieldID = '#'+fieldID;
+	valueFieldID = '#' + valueFieldID;
 	var optionArray = options; //jQuery.parseJSON(options);
 	for(var i = 0; i < optionArray.length; i++){
 		var label = optionArray[i].name + " " + optionArray[i].email;
@@ -29,8 +42,8 @@ function setClientAutoCompleteField(fieldID,options){
       },
       select: function( event, ui ) {
       	var label = ui.item.name;
-      	$( fieldID ).val( label);
-      	$("#user" ).val( ui.item.id);
+      	$(fieldID).val( label);
+      	$(valueFieldID).val( ui.item.id);
       	    	
         return false;
      }
@@ -43,6 +56,6 @@ function setClientAutoCompleteField(fieldID,options){
     };    
 }
 
-setClientAutoCompleteField('user_search',<%= users %>);
+setClientAutoCompleteField('user_search','user',<%= users %>);
 
 </script>
