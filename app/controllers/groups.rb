@@ -1,9 +1,11 @@
 get '/groups' do
+  require_logged_in
   groups = Group.all
   erb :'groups/index', locals: {groups: groups}
 end
 
 get '/groups/new' do
+  require_logged_in
   erb :'groups/new'
 end
 
@@ -25,6 +27,7 @@ post '/groups' do
 end
 
 get '/group/:id' do
+  require_logged_in
   group = Group.find_by(id: params[:id])
   return [500, "Couldn't Find Group"] unless group
 
@@ -32,7 +35,11 @@ get '/group/:id' do
 end
 
 get '/group/edit/:id' do
+  require_logged_in
+  current_user = User.find_by(id: session[:user_id])
   group = Group.find_by(id: params[:id])
+  return [500, "Couldn't Find Group."] unless group
+  return [403, "You don't have access to this."] unless group.admin_id == current_user.id
 
   members_string = ""
 
@@ -40,8 +47,6 @@ get '/group/edit/:id' do
     members_string += member.name
     members_string += ", " unless member == group.members.last
   end
-
-  return [500, "Couldn't Find Group"] unless group
 
   erb :'groups/edit', locals: {group: group, members_string: members_string}
 end

@@ -1,5 +1,7 @@
 <h3><%= group.name %></h3>
+<% if group.admin_id == session[:user_id] %>
 <span><a href="/group/edit/<%= group.id %>">edit</a></span>
+<% end %>
 <h3>Group Admin: <%= group.admin.name %></h3>
 <h3>Group Organizer: <%= group.organizer.name %></h3>
 <h3>Members</h3>
