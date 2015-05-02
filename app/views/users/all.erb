@@ -1,6 +1,8 @@
 <div class="container">
   <% if params[:updated] %>
-  <%= "Your account has been updated" %>
+  <%= "Your account has been updated" %>]
+  <% elsif params[:error] == 'ua' %>
+  <%= "Access Denied" %>
   <% end %>
   <h2>All Users</h2>
   <% users.each do |user| %>

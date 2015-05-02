@@ -34,9 +34,18 @@ get '/users/:id/edit' do
     end
 end
 
+get '/users/:id/delete' do
+  erb :'/users/confirm_delete'
+end
+
 delete '/users/:id/delete' do
-  logged_user.destroy
-  redirect '/'
+  if logged_user.authenticate(params[:password])
+    logged_user.destroy
+    session.clear
+    redirect '/'
+  else
+    redirect '/users?error=ua'
+  end
 end
 
 put '/users/:id/update' do
