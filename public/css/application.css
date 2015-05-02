@@ -1,7 +1,7 @@
 body {
+  background: url('/images/background.jpg') no-repeat left top fixed;
   background-color: #95a5a6;
-  background-image: url('/images/background.jpg');
-  background-size: 100%;
+  background-size: cover;
 }
 
 footer {
