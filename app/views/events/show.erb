@@ -2,12 +2,18 @@
 <div><%= event.description %></div>
 <div><%= event.event_on.strftime("%m/%d/%Y %H:%M") %></div>
 <div><%= event.group.name %></div>
+<% if vote %>
+<div>Votes count : <%= event.votes.count %></div>
+<% end %>
 <ul>
 <% event.restaurants.each do |restaurant| %>
 	<li><a href="<%= restaurant.url %>" ><%= restaurant.name %></a>
-		<form action="event/<%= event.id %>/restaurant/<%= restaurant.id %>/vote" method="post">				
+		<% unless vote %>
+		<form action="/event/<%= event.id %>/restaurant/<%= restaurant.id %>/vote" method="post">				
 			<input type="submit" value="vote"/>
 		</form>
+		<% end %>
 	</li>
 <% end %>
 </ul>
+

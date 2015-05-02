@@ -1,12 +1,12 @@
-post 'event/:e_id/restaurant/:r_id/vote' do
-	votes_params = {user_id: session[:user_id], event_id: params[:e_id]}
+post '/event/:e_id/restaurant/:r_id/vote' do
+	votes_params = {user_id: logged_user.id, event_id: params[:e_id]}
 	vote = Vote.find_by(votes_params)
 	redirect '/votes?error=av' if vote
-	votes_params[:restaurant] = params[:r_id]
-	vote = Vote.create(votes_params)
-	redirect '/votes'
-end
-
-get '/votes' do
-	erb :"votes/show", locals: { message: params[:error]}
+	new_vote = Vote.new
+	new_vote.restaurant = Restaurant.find(params[:r_id])
+	new_vote.user = logged_user
+	event = Event.find(params[:e_id])
+	new_vote.event = event
+	new_vote.save
+	redirect '/event/#{event.id}'
 end
