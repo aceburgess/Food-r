@@ -1,14 +1,14 @@
 <div class="container">
-  <h2>Edit <%= current_user.name %>'s Settings</h2>
-  <form action="/users/<%=current_user.id%>/update" method="post">
+  <h2>Edit <%= logged_user.name %>'s Settings</h2>
+  <form action="/users/<%=logged_user.id%>/update" method="post">
     <h3>Update Your Information Here<h3> <br>
     <input type="hidden" name="_method" value="put">
-    <input type="string" name="user[name]" value="<%=current_user.name%>"> <br>
-    <input type="email" name="user[email]" value="<%=current_user.email%>"> <br>
+    <input type="string" name="user[name]" value="<%=logged_user.name%>"> <br>
+    <input type="email" name="user[email]" value="<%=logged_user.email%>"> <br>
     <input type="password" name="user[password]" value=""><br>
     <input type="submit" value="Update User Info">
   </form><br>
-  <form action='/users/<%= current_user.id %>/delete' method="post">
+  <form action='/users/<%= logged_user.id %>/delete' method="post">
   <input type="hidden" name="_method" value="delete"><br>
   <input type="submit" value="Delete Your Account FOREVER">
 </form>
