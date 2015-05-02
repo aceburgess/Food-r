@@ -1,9 +1,38 @@
-.container {
-  margin: 20px auto;
-  width: 600px;
-  padding: 0px 20px 20px 20px;
-  border: 1px dotted black;
+body {
+  background-color: #95a5a6;
+  background-image: url('/images/background.jpg');
+  background-size: 100%;
 }
-th {
-  text-align: left;
+
+footer {
+  color: #eee;
+  background-color: #222;
+  height: 60px;
+  padding: 20px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+#copyright {
+  float: right;
+}
+
+.jumbotron {
+  color: #ccc !important;
+  padding: 30px;
+  background-color: rgba(50,50,50, 0.6) !important;
+}
+
+/* centered columns styles */
+.row-centered {
+    text-align:center;
+}
+.col-centered {
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
 }

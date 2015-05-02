@@ -1,10 +1,8 @@
-<div class='container'>
-  <h2><%= logged_user.name %>'s Profile Page</h2>
-  <% if session[:user_id] == logged_user.id %>
-  <form action='/users/<%= session[:user_id] %>/edit' method='put'>
-    <input type='submit' value='Edit Profile'/>
-    <%= gravitar(logged_user.email)%>
-    <%= logged_user.email %>
-  </form>
-  <% end %>
-</div>
+<h2><%= logged_user.name %>'s Profile Page</h2>
+<% if session[:user_id] == logged_user.id %>
+<form action='/users/<%= session[:user_id] %>/edit' method='put'>
+  <input type='submit' value='Edit Profile'/>
+  <%= gravitar(logged_user.email)%>
+  <%= logged_user.email %>
+</form>
+<% end %>
