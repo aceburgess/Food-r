@@ -10,7 +10,7 @@ get '/events/new' do
 end
 
 post '/event/create' do
-	params[:event][:event_on] = DateTime.parse("#{params[:event_date]} #{params[:event_time]}")
+	params[:event][:event_on] = DateTime.parse("#{params[:event_date]}", "#{params[:event_time]}")
 	event = Event.new(params[:event])
 	return [500,"Couldn't create event #{params[:event][:title]}"] unless event.save
 	city = params[:city]
