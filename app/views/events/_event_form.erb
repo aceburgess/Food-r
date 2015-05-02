@@ -1,10 +1,12 @@
+
 <form class="form_control" action="<%= action %>" method="post">
 	<% if defined?(event) %>
 		<input type="hidden" name="_method" value="put" />
 	<% end %>
 	<input type="text" name="event[title]" placeholder="Title" value="<%= event.title if defined?(event) %>" />
 	<input type="text" name="event[description]" placeholder="Description" value="<%= event.description if defined?(event) %>" />
-	<input type="text" name="event[event_on]" placeholder="Date of Event" value="<%= event.event_on if defined?(event) %>" />
+	<input type="text" class="datePicker" name="event_date" placeholder="Date of Event" value="<%= event.event_on.strftime("%m/%d/%Y") if defined?(event) %>" />
+	<input type="text" class="timePicker" name="event_time" placeholder="Hour of Event" value="<%= event.event_on.strftime("%H:%M") if defined?(event) %>" />
 	<input type="text" name="event[penalty]" placeholder="Penalty" value="<%= event.penalty if defined?(event) %>" />
 	<input type="text" name="city" placeholder="City">
 	<input type="text" name="state" placeholder="State">
@@ -22,3 +24,11 @@
 
 	<input type="submit" value="<%= submit_label %>" />
 </form>
+
+ <script>
+  $(function() {
+    // $( "#event_on" ).datepicker({ minDate: 0, maxDate: "+7D" });
+    $( ".datePicker" ).datepicker({ minDate: 0});
+    $('.timePicker').ptTimeSelect();
+  });
+  </script>
