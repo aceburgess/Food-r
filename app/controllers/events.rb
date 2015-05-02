@@ -3,6 +3,11 @@ get '/events' do
 	erb :"events/index" , locals: {events: events}
 end
 
+get '/events/new' do
+	groups = Group.all
+	erb :"/events/add", locals: { groups: groups }
+end
+
 post '/event/create' do
 	event = Event.new(params[:event])
 	return [500,"Couldn't create event #{params[:event][:title]}"] unless event.save
@@ -17,7 +22,9 @@ end
 
 get '/event/update/:id' do
 	event = Event.find_by(id: params[:id])
-	erb :"events/edit" , locals: { event: event }
+	groups = Group.all
+	erb :"events/edit" , locals: { event: event, action: "/event/#{event.id}", 
+	submit_label: submit_label, groups: groups }
 end
 
 put '/event/:id' do

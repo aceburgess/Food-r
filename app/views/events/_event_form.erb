@@ -1,0 +1,22 @@
+<form class="form_control" action="<%= action %>" method="post">
+	<% if defined?(event) %>
+		<input type="hidden" name="_method" value="put" />
+	<% end %>
+	<input type="text" name="event[title]" value="<%= event.title if defined?(event) %>" />
+	<input type="text" name="event[description]" value="<%= event.description if defined?(event) %>" />
+	<input type="text" name="event[event_on]" value="<%= event.event_on if defined?(event) %>" />
+	<input type="text" name="event[penalty]" value="<%= event.penalty if defined?(event) %>" />
+
+	<select name="event[group_id]">
+		<% groups.each do |group| %>
+			<% selected = '' %>
+			<% if (defined?(event) && (group.id == event.group.id)) %>
+				<% selected = 'selected' %>
+			<% end %>
+			<option value="<%= group.id %>" <%= selected %> ><%= group.name %></option>
+		<% end %>
+	</select>
+	<input type="text" name="event[group]" value="<%= event.group if defined?(event) %>" />
+	
+	<input type="submit" value="<%= submit_label %>" />
+</form>
