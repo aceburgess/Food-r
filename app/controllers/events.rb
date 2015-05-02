@@ -56,7 +56,10 @@ end
 get '/event/:id' do
 	event = Event.find_by(id: params[:id])
 	return [500,"Couldn't find event"] unless event
-	erb :"events/show", locals: { event: event }
+	vote = Vote.find_by(user_id: logged_user.id, event_id: event.id)
+	p "vote result"
+	p vote
+	erb :"events/show", locals: { event: event , vote: vote}
 end
 
 get '/event/update/:id' do

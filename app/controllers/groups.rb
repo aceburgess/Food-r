@@ -6,22 +6,25 @@ end
 
 get '/groups/new' do
   require_logged_in
-  erb :'groups/new'
+  users = User.all
+  users_json = users.map{|user| Hash[id: user.id, name: user.name , email: user.email]}.to_json
+  erb :'groups/new', locals: { users: users_json}
 end
 
 post '/groups' do
-  new_group = Group.create(name: params[:name], admin_id: session[:user_id], organizer_id: session[:user_id])
+  p params
+  # new_group = Group.create(name: params[:name], admin_id: session[:user_id], organizer_id: session[:user_id])
 
-  split_string = params[:members].split(",").each {|member| member.strip!}
+  # split_string = params[:members].split(",").each {|member| member.strip!}
 
-  member_objects = []
-  split_string.each do |name|
-    member = User.find_by(name: name)
-    member_objects << member if member
-  end
+  # member_objects = []
+  # split_string.each do |name|
+  #   member = User.find_by(name: name)
+  #   member_objects << member if member
+  # end
 
-  new_group.members = member_objects
-  new_group.save
+  # new_group.members = member_objects
+  # new_group.save
 
   redirect '/groups'
 end

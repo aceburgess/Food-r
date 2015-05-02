@@ -1,6 +1,48 @@
 <h1>Create a New Group</h1>
-<form method='post' action='/groups'>
+
+
+<form id="group_form" method='post' action='/groups'>
   <input type='text' name='name' placeholder='group name' />
-  <input type='text' name='members' placeholder='type member names seperated by comas here' />
+  <input type='text' id="user_search" placeholder='type member names seperated by comas here' />
+  <input type='hidden' id="user" name='members[]' />
   <input type='submit' value='Create Group' />
 </form>
+
+<script type="text/javascript">
+
+function setClientAutoCompleteField(fieldID,options){
+
+	fieldID = '#'+fieldID;
+	var optionArray = options; //jQuery.parseJSON(options);
+	for(var i = 0; i < optionArray.length; i++){
+		var label = optionArray[i].name + " " + optionArray[i].email;
+		optionArray[i]['value'] = label;	
+	}
+
+	$( fieldID ).autocomplete({
+      minLength: 0,
+      source: optionArray,
+      focus: function( event, ui ) {
+      	var label = ui.item.name;      							
+      	$( fieldID ).val( label);
+        return false;
+      },
+      select: function( event, ui ) {
+      	var label = ui.item.name;
+      	$( fieldID ).val( label);
+      	$("#user" ).val( ui.item.id);
+      	    	
+        return false;
+     }
+    })
+    .data( "ui-autocomplete" )._renderItem = function( ul, item ) {
+    	var label = item.name;
+      return $( "<li>" )
+        .append( "<a>" + label + "</a>" )
+        .appendTo( ul );
+    };    
+}
+
+setClientAutoCompleteField('user_search',<%= users %>);
+
+</script>
