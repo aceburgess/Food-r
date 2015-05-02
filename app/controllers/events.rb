@@ -9,8 +9,8 @@ get '/events/new' do
 end
 
 post '/event/create' do
+	params[:event][:event_on] = DateTime.parse("#{params[:event_date]} #{params[:event_time]}")
 	event = Event.new(params[:event])
-	event.event_on = DateTime.parse(event.event_on)
 	return [500,"Couldn't create event #{params[:event][:title]}"] unless event.save
 	city = params[:city]
 	state = params[:state]
@@ -48,7 +48,7 @@ get '/event/update/:id' do
 	event = Event.find_by(id: params[:id])
 	groups = Group.all
 	erb :"events/edit" , locals: { event: event, action: "/event/#{event.id}",
-	submit_label: submit_label, groups: groups }
+	submit_label: "save", groups: groups }
 end
 
 put '/event/:id' do

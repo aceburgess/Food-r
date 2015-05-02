@@ -1,6 +1,6 @@
 <div><%= event.title %></div>
 <div><%= event.description %></div>
-<div><%= event.event_on %></div>
+<div><%= event.event_on.strftime("%m/%d/%Y %H:%M") %></div>
 <div><%= event.group.name %></div>
 <ul>
 <% event.restaurants.each do |restaurant| %>
