@@ -20,6 +20,27 @@
 
   <title></title>
 </head>
+<header>
+    <a href='/'>Home</a><a href='/groups/new'>Create Group</a>
+    <a href='/events/new'>Create Event</a>
+    <a href='/users/<%= session[:user_id] %>'>Your Profile</a>
+    <% if !session[:user_id] %>
+    <form method="get" action='/users/create'>
+      <input type='submit' value='Create Account'/>
+    </form>
+      <form method="post" action="/session">
+        <label for="Login">Sign in</label>
+        <input name="email" type="text" placeholder="email"/>
+        <input name="password" type="password" placeholder="password"/>
+        <input type='submit' value='login' />
+      </form>
+    <% else %>
+      <form method="post" action="/session/end">
+        <input type='submit' value='logout' />
+      </form>
+    <% end %>
+</header>
+
 <body>
   <%= yield %>
 </body>
