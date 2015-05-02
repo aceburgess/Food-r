@@ -1,5 +1,3 @@
-
-
 User.create(
   name: 'Sherman Ng',
   email: 'sherman.ng10@gmail.com',
