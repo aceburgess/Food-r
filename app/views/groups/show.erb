@@ -1,0 +1,9 @@
+<h3><%= group.name %></h3>
+<h3>Group Admin: <%= group.admin.name %></h3>
+<h3>Group Organizer: <%= group.organizer.name %></h3>
+<h3>Members</h3>
+<ul>
+  <% group.members.each do |member| %>
+  <li><%= member.name %></li>
+  <% end %>
+</ul>
