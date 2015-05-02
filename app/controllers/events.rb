@@ -4,7 +4,8 @@ get '/events' do
 end
 
 get '/events/new' do
-	erb :"/events/add", locals: { action: "/event/create"}
+	groups = Group.all
+	erb :"/events/add", locals: { groups: groups }
 end
 
 post '/event/create' do
@@ -21,7 +22,9 @@ end
 
 get '/event/update/:id' do
 	event = Event.find_by(id: params[:id])
-	erb :"events/edit" , locals: { event: event }
+	groups = Group.all
+	erb :"events/edit" , locals: { event: event, action: "/event/#{event.id}", 
+	submit_label: submit_label, groups: groups }
 end
 
 put '/event/:id' do
