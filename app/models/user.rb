@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   has_many :groups, through: :group_users
   has_many :group_users, class_name: 'GroupUsers'
   has_many :votes
+  has_many :restaurants, through: :votes
 
   def password
     @password ||= Password.new(password_hash)

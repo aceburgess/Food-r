@@ -16,6 +16,10 @@ def convert_to_string(args = {})
   [args[:city], args[:state], args[:zip_code]].compact.join(', ')
 end
 
-def yelp(params = {})
-  Yelp.client.search( convert_to_string(location_hash(params)) , {term: 'food'}).businesses
+def yelp_search(params = {})
+  Yelp.client.search( convert_to_string( location_hash(params) ) , {term: 'food'}).businesses
+end
+
+def yelp_search_by_phone number
+  Yelp.client.phone_search(number).businesses.first
 end
