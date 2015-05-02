@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
   include BCrypt
-  has_many :group_users
   has_many :events, through: :groups
   has_many :groups, through: :group_users
+  has_many :group_users, class_name: 'GroupUsers'
   has_many :votes
 
   def password

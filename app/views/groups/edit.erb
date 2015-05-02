@@ -1,0 +1,7 @@
+<h1>Edit Your Group</h1>
+<form method='post' action='/groups'>
+  <input type='hidden' name='_method' value='put'/>
+  <input type='text' name='name' placeholder='<%= group.name%>' />
+  <input type='text' name='members' placeholder='<%= group.>' />
+  <input type='submit' value='Create Group' />
+</form>
