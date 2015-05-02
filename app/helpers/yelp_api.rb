@@ -9,7 +9,7 @@ def location_hash(params = {})
   city = params[:city]
   state = params[:state]
   zip_code = params[:zip_code]
-  {city: city, state: state, zip_code: zip_code}
+  {city: city, state: state, zip_co'de: zip_code}
 end
 
 def convert_to_string(args = {})
@@ -17,5 +17,5 @@ def convert_to_string(args = {})
 end
 
 def yelp(params = {})
-  Yelp.client.search( convert_to_string(location_hash(params)) , {term: 'food'}).businesses
+  Yelp.client.search( convert_to_string( params ) , {term: 'food'}).businesses
 end

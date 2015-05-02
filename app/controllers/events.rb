@@ -27,12 +27,14 @@ get '/events/select_restaurants/:event_id' do
 end
 
 post '/events/select_restaurants/:id' do
-	local_area = location_hash params[:location]
+	local_area = location_hash params
+	selected_restaurants =
 	params[:yelp_id].each do |name, yelp_id|
 		unless Restaurant.find_by(business_id: yelp_id)
-			new_restaurant = Restaurant.new(name: restaurant_name, business_id: yelp_id)
+			new_restaurant = Restaurant.new(name: name, business_id: yelp_id, )
 			new_restaurant.location = convert_to_string local_area
 			new_restaurant.save
+			event.restaurants << new_restaurant
 		end
 	end
 	redirect :"/event/#{params[:id]}"
