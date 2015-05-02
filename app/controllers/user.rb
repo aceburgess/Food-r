@@ -4,7 +4,6 @@ end
 
 post '/users' do
   new_user = User.new(user_params(params[:user]))
-
   if new_user.save
     session[:user_id] = new_user.id
     redirect "/users"
@@ -14,29 +13,34 @@ post '/users' do
 end
 
 get '/users' do
+  require_logged_in
   users = User.all()
   erb :'/users/all', locals: {users: users}
 end
 
 get '/users/:id' do |id|
+  require_logged_in
   current_user = User.find(id)
   return [500, "That user does not exist"] unless current_user
   erb :'/users/show', locals: {current_user: current_user}
 end
 
 get '/users/:id/edit' do |id|
+  require_logged_in
   current_user = User.find(id)
   return [500, "That user does not exist"] unless current_user
    erb :'/users/edit', locals: {current_user: current_user}
 end
 
 delete '/users/:id/delete' do |id|
+  require_logged_in
   current_user = User.find(id)
   current_user.destroy
   redirect '/users'
 end
 
 put '/users/:id/update' do |id|
+  require_logged_in
   current_user = User.find(id)
   current_user.update(name: params[:name], email: params[:email], password: params[:password])
 end
