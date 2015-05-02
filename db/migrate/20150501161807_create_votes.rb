@@ -6,7 +6,6 @@ class CreateVotes < ActiveRecord::Migration
   		table.integer 	:event_id, null: false
 
   		table.timestamps
-
   	end
   end
 end

@@ -1,6 +1,8 @@
 <form action="/events/select_restaurants/<%= event.id %>?city=<%=local_area[:city]%>&state=<%=local_area[:state]%>&zip_code=<%=local_area[:zip_code]%>" method="post">
   <% local_restaurants.each do |restaurant| %>
-    <input type="checkbox" name="yelp_phone[<%=restaurant.name%>]" value="<%= restaurant.phone %>">
+    <% p restaurant.name %>
+    <% p restaurant.phone if restaurant.respond_to?(:phone) %>
+    <input type="checkbox" name="yelp_phone[<%=restaurant.name%>]" value="<%= restaurant.phone if restaurant.respond_to?(:phone) %>">
     <%= restaurant.name %><br>
   <% end %>
   <input type="submit" value="Submit">

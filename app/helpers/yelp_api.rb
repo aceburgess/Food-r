@@ -17,9 +17,9 @@ def convert_to_string(args = {})
 end
 
 def yelp_search(params = {})
-  Yelp.client.search( convert_to_string( params ) , {term: 'food'}).businesses
+  Yelp.client.search( convert_to_string( location_hash(params) ) , {term: 'food'}).businesses
 end
 
 def yelp_search_by_phone number
-  Yelp.client.phone_search(number).busineses.first
+  Yelp.client.phone_search(number).businesses.first
 end

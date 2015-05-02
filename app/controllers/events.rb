@@ -26,9 +26,10 @@ get '/events/select_restaurants/:event_id' do
 	erb :"/events/select_restaurants", locals: { event: event, local_restaurants: local_restaurants, local_area: local_area}
 end
 
-post '/events/select_restaurants/:id' do
+post '/events/select_restaurants/:event_id' do
 	local_area = location_hash params
-	selected_restaurants =
+	event = Event.find(params[:event_id])
+	organizer = logged_user
 	params[:yelp_phone].each do |name, phone|
 		unless Restaurant.find_by(phone: phone)
 			current_restaurant = yelp_search_by_phone phone
@@ -37,13 +38,18 @@ post '/events/select_restaurants/:id' do
 			new_restaurant.business_id = current_restaurant.id
 			new_restaurant.phone = current_restaurant.phone
 			new_restaurant.url = current_restaurant.url
-			new_restaurant.address = current_restaurant.address
+			new_restaurant.address = current_restaurant.location.address.first
 			new_restaurant.location = convert_to_string local_area
+			new_restaurant.picture_url = current_restaurant.image_url
 			new_restaurant.save
-			event.restaurants << new_restaurant
+			new_vote = Vote.new
+			new_vote.restaurant_id = new_restaurant.id
+			new_vote.user_id = organizer.id
+			new_vote.event_id = event.id
+			new_vote.save
 		end
 	end
-	redirect :"/event/#{params[:id]}"
+	redirect :"/event/#{params[:event_id]}"
 end
 
 get '/event/:id' do
