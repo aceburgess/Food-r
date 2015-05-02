@@ -4,7 +4,8 @@ get '/events' do
 end
 
 get '/events/new' do
-	groups = Group.all
+	current_user = logged_user
+	groups = Group.where(organizer_id: current_user.id)
 	erb :"/events/add", locals: { groups: groups }
 end
 

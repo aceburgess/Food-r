@@ -27,7 +27,7 @@ end
 
 get '/users/:id/edit' do
   require_logged_in
-  current_user = User.find_by(id: session[:user_id])
+  current_user = logged_user
     if params[:id].to_i == current_user.id
       erb :'/users/edit', locals: {current_user: current_user}
     else
@@ -36,13 +36,13 @@ get '/users/:id/edit' do
 end
 
 delete '/users/:id/delete' do
-  current_user = User.find_by(id: session[:user_id])
+  current_user = logged_user
   current_user.destroy
   redirect '/users'
 end
 
 put '/users/:id/update' do
-  current_user = User.find_by(id: session[:user_id])
+  current_user = logged_user
   current_user.update(params[:user])
 end
 
