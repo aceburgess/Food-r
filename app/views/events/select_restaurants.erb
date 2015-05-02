@@ -1,0 +1,7 @@
+<form action="/events/select_restaurants/<%= event.id %>?location=<%= local_area %>" method="post">
+  <% local_restaurants.each do |restaurant| %>
+    <input type="checkbox" name="yelp_id[<%=restaurant.name%>]" value="<%= restaurant.id %>">
+    <%= restaurant.name %><br>
+  <% end %>
+  <input type="submit" value="Submit">
+</form>

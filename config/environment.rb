@@ -19,6 +19,8 @@ require 'pry'
 require 'bcrypt'
 require 'dotenv'; Dotenv.load # require and load DotENV
 require 'yelp'
+require 'date'
+require 'time'
 
 require 'sinatra'
 require "sinatra/reloader" if development?

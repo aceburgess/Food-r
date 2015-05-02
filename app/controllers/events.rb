@@ -10,8 +10,32 @@ end
 
 post '/event/create' do
 	event = Event.new(params[:event])
+	event.event_on = DateTime.parse(event.event_on)
 	return [500,"Couldn't create event #{params[:event][:title]}"] unless event.save
-	redirect '/events'
+	city = params[:city]
+	state = params[:state]
+	zip_code = params[:zip_code]
+	redirect :"/events/select_restaurants/#{event.id}?city=#{city}&state=#{state}&zip_code=#{zip_code}"
+end
+
+get '/events/select_restaurants/:event_id' do
+	event = Event.find(params[:event_id])
+	return [500, "Couldn't find event"] unless event
+	local_area = location_hash params
+	local_restaurants = yelp( local_area )
+	erb :"/events/select_restaurants", locals: { event: event, local_restaurants: local_restaurants, local_area: local_area}
+end
+
+post '/events/select_restaurants/:id' do
+	local_area = location_hash params[:location]
+	params[:yelp_id].each do |name, yelp_id|
+		unless Restaurant.find_by(business_id: yelp_id)
+			new_restaurant = Restaurant.new(name: restaurant_name, business_id: yelp_id)
+			new_restaurant.location = convert_to_string local_area
+			new_restaurant.save
+		end
+	end
+	redirect :"/event/#{params[:id]}"
 end
 
 get '/event/:id' do
@@ -23,7 +47,7 @@ end
 get '/event/update/:id' do
 	event = Event.find_by(id: params[:id])
 	groups = Group.all
-	erb :"events/edit" , locals: { event: event, action: "/event/#{event.id}", 
+	erb :"events/edit" , locals: { event: event, action: "/event/#{event.id}",
 	submit_label: submit_label, groups: groups }
 end
 
@@ -31,7 +55,7 @@ put '/event/:id' do
 	event = Event.find_by(id: params[:id])
 	return [500,"Couldn't find event"] unless event
 	event.update_attributes(params[:event])
-	redirect '/events'
+	redirect '/events/select_restaurants/#{event.id}'
 end
 
 delete '/event/:id' do
