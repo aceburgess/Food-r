@@ -1,7 +1,11 @@
 <h1>Edit Your Group</h1>
-<form method='post' action='/groups'>
+<form method='post' action='/group/<%= group.id %>'>
   <input type='hidden' name='_method' value='put'/>
-  <input type='text' name='name' placeholder='<%= group.name%>' />
-  <input type='text' name='members' placeholder='' />
+  <input type='text' name='name' value='<%= group.name %>' />
+  <input type='text' name='members' value='<%= members_string %>' />
   <input type='submit' value='Edit Group' />
+</form>
+<form method='post' action='/group/<%= group.id %>'>
+  <input type='hidden' name='_method' value='delete'/>
+  <input type='submit' value='Delete Group' />
 </form>
