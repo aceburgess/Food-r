@@ -4,8 +4,8 @@ get '/groups' do
 end
 
 post '/group' do
-  params[:admin_id] = session[:id]
-  params[:organizer_id] = session[:id]
+  params[:admin_id] = session[:user_id]
+  params[:organizer_id] = session[:user_id]
   new_group = Group.create(params)
   new_group.members = params[:members].split(",").map do |name|
     User.find_by(name: name.strip)
