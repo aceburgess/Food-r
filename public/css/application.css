@@ -12,6 +12,40 @@ li {
 }
 
 
+.rest-selec {
+  float: left;
+}
+
+input[type=checkbox]:checked ~ div {
+  border: 1px solid red;
+}
+
+input ~  {
+  border: 1px solid blue;
+}
+
+.submit {
+  clear: both;
+}
+
+/* */
+.thumb{
+    width: 300px;
+    height: 300px;
+    float: left;
+    margin-left: 50px;
+}
+
+.img {
+  border-radius: 50%;
+}
+
+input.chk{
+  margin-left: 0px;
+  display: inline-block;
+/* */
+
+
 footer {
   color: #eee;
   background-color: #222;
