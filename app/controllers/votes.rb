@@ -8,6 +8,6 @@ post '/event/:e_id/restaurant/:r_id/vote' do
 	event = Event.find(params[:e_id])
 	new_vote.event = event
 	new_vote.save
-	redirect "/event/#{event.id}/results" if (event.votes - event.restaurants.uniq) >= event.group.members
+	redirect "/event/#{event.id}/results" if (event.votes - event.restaurants.uniq) >= event.group.members.count
 	redirect "/event/#{event.id}"
 end
