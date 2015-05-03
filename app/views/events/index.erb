@@ -1,11 +1,8 @@
-<div class="container">
+<div class="medium-wrapper">
 
 	<div class="row">
-		<div class="col-md-6" >
-			<h2>List of events</h2>
-		</div>
-		<div class="col-md-4" >
-			<form action="/events" method="get" class="form-inline divtop" >
+			<h2 id="event-index-heading">List of events</h2>
+			<form id='event-search' action="/events" method="get" class="form-inline divtop" >
 				<div class="form-group">
 					<input type="text" name="search" placeholder="Event title" class="form-control" />
 				</div>
@@ -13,19 +10,14 @@
 					<input type="submit" value="search"  class="form-control" />
 				</div>
 			</form>
-		</div>
 	</div>
 	<hr>
-	<div class='col-md-3'>
-	</div>
 
-	<div class='col-md-6'>
+	<div class='col-md-12'>
 		<div class="list-group">
 			<% events.each do |event| %>
 				<a class="list-group-item text-center" href="/event/<%= event.id %>" ><%= event.title %></a>
 			<% end %>
 		</div>
-	</div>
-	<div class='col-md-3'>
 	</div>
 </div>

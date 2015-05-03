@@ -17,10 +17,13 @@ post '/groups' do
   # split_string = params[:members].split(",").each {|member| member.strip!}
 
   member_objects = []
+  params[:members].delete("")
   params[:members].each do |id|
     member = User.find(id)
     member_objects << member if member
   end
+
+  return [500, "You Must Add Valid Members to Your Group"] unless member_objects.length > 0
 
   new_group.members = member_objects
   new_group.save
