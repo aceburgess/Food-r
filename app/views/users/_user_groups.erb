@@ -1,10 +1,10 @@
 <div class='panel panel-default'>
   <div class='panel-heading'>
-    <h3><a href='/group/<%= group.id %>'><%= group.name %></a></h3>
+    <h4><a href='/group/<%= group.id %>'><%= group.name %></a></h4>
   </div>
   <div class='panel-body'>
   <% if group.events.count > 0 %>
-  <p>EVENTS</p>
+  <p>Scheduled Events:</p>
   <ul>
   	<% group.events.each do |event| %>
   		<li><a href='/event/<%= event.id %>'><%= event.title %></a></li>
