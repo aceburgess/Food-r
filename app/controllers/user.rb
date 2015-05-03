@@ -1,8 +1,18 @@
 get '/users/create' do
+  require_logged_in
   erb :'/users/new'
 end
 
+get '/users/index' do
+  require_logged_in
+  groups_in = logged_user.groups
+  organized_groups = Group.where(organizer_id: logged_user.id)
+  erb :"users/index", locals:{ groups: groups_in, organized_groups: organized_groups}
+
+end
+
 post '/users' do
+  require_logged_in
   new_user = User.new(user_params(params[:user]))
   if new_user.save
     session[:user_id] = new_user.id

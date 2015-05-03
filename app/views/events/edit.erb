@@ -1,1 +1,11 @@
+<div class="container">
+	<div class="row" >
+		<h2>Update an Event</h2>
+	</div>
+	<hr>
+
 <%= erb :"events/_event_form", locals: { event: event, action: "/event/#{event.id}", submit_label: 'save changes', groups: groups} %>
+
+	<div class="row divtop" ><hr></div>
+	<hr>
+</div>

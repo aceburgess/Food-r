@@ -1,0 +1,8 @@
+<div class='groupContainer'>
+		<header><%= group.name %></br><small><strong>EVENTS</strong></small></header>
+		<ul>
+			<% group.events.each do |event| %>
+				<li><%= event.title %></li>
+			<% end %>
+		</ul>
+	</div>

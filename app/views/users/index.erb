@@ -1,0 +1,22 @@
+<div class='container'>
+	<div class='row'>
+		<h2>Groups you are organizing</h2>
+	</div>
+
+	<hr>
+
+	<% organized_groups.each do |group| %>
+		<%= erb :"users/_user_groups", locals: {group: group} %>
+	<% end %>
+
+
+	<div class='row'>
+		<h2>Groups you are in</h2>
+	</div>
+
+	<hr>
+
+	<% groups.each do |group| %>
+		<%= erb :"users/_user_groups", locals: {group: group} %>
+	<% end %>
+</div>
