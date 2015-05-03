@@ -7,6 +7,19 @@ li {
   list-style: none;
 }
 
+a {
+  color: #66757f;
+}
+
+a:visited {
+  color: #66757f;
+}
+
+a:hover {
+  color: #333;
+  text-decoration: none;
+}
+
 .prof-pic img {
   border-radius: 50%;
 }
@@ -99,3 +112,61 @@ footer {
   float: right !important;
 }
 
+.small-container {
+  color: #222;
+  width: 60%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.list-heading {
+  color: #222;
+  padding-bottom: 10px;
+  font-size: 1.8em;
+  border-bottom: 1px solid #ccd6dd;
+}
+
+.group-name {
+  font-size: 1.6em;
+}
+
+.events-listing-heading {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin: 0;
+}
+
+.event-form {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.event-heading {
+  width: 60%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+.medium-wrapper {
+  width: 40%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+.fifty-center {
+  width: 50%;
+  margin: 0 auto;
+}
+
+#event-search {
+  display: inline-block;
+  text-align: center;
+  float: right;
+}
+
+#event-index-heading {
+  margin-top: 25px;
+  display: inline-block;
+  margin-right: 50px;
+  text-align: center;
+}

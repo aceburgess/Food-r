@@ -1,8 +1,11 @@
 <div class='groupContainer'>
-		<header><%= group.name %></br><small><strong>EVENTS</strong></small></header>
-		<ul>
-			<% group.events.each do |event| %>
-				<li><%= event.title %></li>
-			<% end %>
-		</ul>
-	</div>
+	<p class='group-name'><a href='/group/<%= group.id %>'><%= group.name %></a><p>
+  <% if group.events.count > 0 %>
+  <p class='events-listing-heading'>EVENTS</p>
+	<ul>
+		<% group.events.each do |event| %>
+			<li><a href='/event/<%= event.id %>'><%= event.title %></a  ></li>
+		<% end %>
+	</ul>
+  <% end %>
+</div>
