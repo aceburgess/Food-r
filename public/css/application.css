@@ -148,7 +148,7 @@ footer {
 }
 
 .medium-wrapper {
-  width: 40%;
+  width: 60%;
   margin: 0 auto;
   margin-bottom: 20px;
 }
@@ -196,4 +196,19 @@ footer {
 
 .panel-heading a:hover {
   color: white;
+}
+
+.main {
+    display:none;
+}
+
+#profile-photo {
+  border-radius: 100%;
+  border: 1px solid #101010;
+}
+
+.small-wrapper {
+  width: 40%;
+  margin: 0 auto;
+  margin-bottom: 20px;
 }
