@@ -170,3 +170,12 @@ footer {
   margin-right: 50px;
   text-align: center;
 }
+
+.group-show-heading {
+  display: inline;
+  margin-right: 20px;
+}
+
+.edit-form {
+  display: inline;
+}

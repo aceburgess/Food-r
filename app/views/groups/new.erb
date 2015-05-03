@@ -6,12 +6,12 @@
   <form id="group_form" method='post' action='/groups'>
     <div class='divtop'>
       <label for="name">Group Name:</label>
-      <input type='text' name='name' placeholder='Group Name Here' />
+      <input class='form-control' type='text' name='name' placeholder='Group Name Here' />
     </div>
     <div class='divtop'>
       <div class='divbot'>
-      <label for="user_search">Member Name:</label>
-      <input type='text' id="user_search" placeholder='Member by Name or Email' />
+      <label for="user_search">Member Name(s):</label>
+      <input class='form-control' type='text' id="user_search" placeholder='Member by Name or Email' />
       <input type='hidden' id="user" name='members[]' />
       </div>
     </div>
@@ -32,7 +32,7 @@
     label = "<label for='user_search'>Member Name:</label>"
     bot = "<div class='divbot'>"
     bot2 = "</div>"
-  	name = "<input type='text' id='" + name_id + "' placeholder='Member by Name or Email' />";
+  	name = "<input class='form-control' type='text' id='" + name_id + "' placeholder='Member by Name or Email' />";
    	value = "<input type='hidden' id='" + value_id + "' name='members[]' />";
    	$("#add_user_btn").before(bot + label + " "+ name + value + bot2);
    	setClientAutoCompleteField(name_id,value_id,<%= users %>);
