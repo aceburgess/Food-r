@@ -52,3 +52,11 @@ footer {
 .smalldivtop {
   margin-top: 15px;
 }
+
+.divbot {
+  margin-bottom: 20px;
+}
+
+.divleft {
+  padding-right: 20px
+}
