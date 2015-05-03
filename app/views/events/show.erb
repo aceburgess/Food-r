@@ -1,19 +1,33 @@
-<div><%= event.title %></div>
-<div><%= event.description %></div>
-<div><%= event.event_on.strftime("%m/%d/%Y %H:%M") %></div>
-<div><%= event.group.name %></div>
-<% if vote %>
-<div>Votes count : <%= event.votes.count %></div>
-<% end %>
-<ul>
-<% event.restaurants.each do |restaurant| %>
-	<li><a href="<%= restaurant.url %>" ><%= restaurant.name %></a>
-		<% unless vote %>
-		<form action="/event/<%= event.id %>/restaurant/<%= restaurant.id %>/vote" method="post">				
-			<input type="submit" value="vote"/>
-		</form>
+<div class="container" >
+	<blockquote>
+		<label>Title : </label> <%= event.title %></br>
+		<label>Description : </label><p><%= event.description %></p>
+		<label>Date : </label> <%= event.event_on.strftime("%m/%d/%Y %H:%M") %></br>
+		<label>Group name : </label> <%= event.group.name %></br>
+		
+		<% if vote %>
+			<label>Votes count : </label> <%= event.votes.count %></br>
 		<% end %>
-	</li>
-<% end %>
-</ul>
+	</blockquote>
+	<ul>
+		<% event.restaurants.each do |restaurant| %>
+			<li class="row">
+
+				<div class="col-md-8">
+					<a href="<%= restaurant.url %>" ><h4><%= restaurant.name %></h4></a>
+				</div>
+				<% unless vote %>
+					<div class="col-md-4">
+						<form action="/event/<%= event.id %>/restaurant/<%= restaurant.id %>/vote" method="post" class="form-inline">	
+							<div class="form-group">			
+								<input type="submit" value="vote" class="form-control"/>
+							</div>
+						</form>
+					</div>
+				<% end %>
+			</li>
+		<% end %>
+	</ul>
+
+</div>
 

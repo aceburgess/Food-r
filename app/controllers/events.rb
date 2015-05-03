@@ -1,15 +1,18 @@
 get '/events' do
-	events = Event.all
+	require_logged_in
+	events = params[:search] ? Event.where([" title like ? " ,"%#{params[:search]}%"]) : Event.all
 	erb :"events/index" , locals: {events: events}
 end
 
 get '/events/new' do
+	require_logged_in
 	current_user = logged_user
 	groups = Group.where(organizer_id: current_user.id)
 	erb :"/events/add", locals: { groups: groups }
 end
 
 post '/event/create' do
+	require_logged_in
 	params[:event][:event_on] = DateTime.parse("#{params[:event_date]}", "#{params[:event_time]}")
 	event = Event.new(params[:event])
 	return [500,"Couldn't create event #{params[:event][:title]}"] unless event.save
@@ -20,6 +23,7 @@ post '/event/create' do
 end
 
 get '/events/select_restaurants/:event_id' do
+	require_logged_in
 	event = Event.find(params[:event_id])
 	return [500, "Couldn't find event"] unless event
 	local_area = location_hash params
@@ -28,6 +32,7 @@ get '/events/select_restaurants/:event_id' do
 end
 
 post '/events/select_restaurants/:event_id' do
+	require_logged_in
 	local_area = location_hash params
 	event = Event.find(params[:event_id])
 	organizer = logged_user
@@ -54,6 +59,7 @@ post '/events/select_restaurants/:event_id' do
 end
 
 get '/event/:id' do
+	require_logged_in
 	event = Event.find_by(id: params[:id])
 	return [500,"Couldn't find event"] unless event
 	vote = Vote.find_by(user_id: logged_user.id, event_id: event.id)
@@ -63,6 +69,7 @@ get '/event/:id' do
 end
 
 get '/event/update/:id' do
+	require_logged_in
 	event = Event.find_by(id: params[:id])
 	groups = Group.all
 	erb :"events/edit" , locals: { event: event, action: "/event/#{event.id}",
@@ -70,6 +77,7 @@ get '/event/update/:id' do
 end
 
 put '/event/:id' do
+	require_logged_in
 	event = Event.find_by(id: params[:id])
 	return [500,"Couldn't find event"] unless event
 	event.update_attributes(params[:event])
@@ -77,9 +85,9 @@ put '/event/:id' do
 end
 
 delete '/event/:id' do
+	require_logged_in
 	event = Event.find_by(id: params[:id])
 	return [500,"Couldn't find event"] unless event
 	event.destroy
 	redirect '/events'
 end
-
