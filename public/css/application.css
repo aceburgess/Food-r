@@ -15,14 +15,14 @@ li {
 .rest-selec {
   float: left;
 }
-
+/*
 input[type=checkbox]:checked ~ div {
   border: 1px solid red;
 }
 
-input ~  {
+input ~ {
   border: 1px solid blue;
-}
+}*/
 
 .submit {
   clear: both;
@@ -40,9 +40,9 @@ input ~  {
   border-radius: 50%;
 }
 
-input.chk{
+/*input.chk{
   margin-left: 0px;
-  display: inline-block;
+  display: inline-block;*/
 /* */
 
 

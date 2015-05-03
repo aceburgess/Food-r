@@ -16,10 +16,16 @@
 		</div>
 	</div>
 	<hr>
-	<ul class="list-group">
-		<% events.each do |event| %>
-			<li class="list-group-item"><a href="/event/<%= event.id %>" ><h3><%= event.title %></h3></a></li>
-		<% end %>
-	</ul>
+	<div class='col-md-3'>
+	</div>
 
+	<div class='col-md-6'>
+		<div class="list-group">
+			<% events.each do |event| %>
+				<a class="list-group-item text-center" href="/event/<%= event.id %>" ><%= event.title %></a>
+			<% end %>
+		</div>
+	</div>
+	<div class='col-md-3'>
+	</div>
 </div>
