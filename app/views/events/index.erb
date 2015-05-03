@@ -16,9 +16,9 @@
 		</div>
 	</div>
 	<hr>
-	<ul>
+	<ul class="list-group">
 		<% events.each do |event| %>
-			<li><a href="/event/<%= event.id %>" ><h3><%= event.title %></h3></a></li>
+			<li class="list-group-item"><a href="/event/<%= event.id %>" ><h3><%= event.title %></h3></a></li>
 		<% end %>
 	</ul>
 

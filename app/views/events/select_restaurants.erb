@@ -1,10 +1,26 @@
-<div class="container">
-<form action="/events/select_restaurants/<%= event.id %>?city=<%=local_area[:city]%>&state=<%=local_area[:state]%>&zip_code=<%=local_area[:zip_code]%>" method="post">
-  <% local_restaurants.each do |restaurant| %>
-    <img src="<%= restaurant.image_url if restaurant.respond_to?(:image_url)%>"/>
-    <input type="checkbox" name="yelp_phone[<%=restaurant.name%>]" value="<%= restaurant.phone if restaurant.respond_to?(:phone) %>">
-    <%= restaurant.name %><br><br>
-  <% end %>
-  <input type="submit" value="Submit">
-</form>
+<div class="row">
+  <div class="container">
+    <div class="col-md-12">
+      <div class="input-group">
+        <form action="/events/select_restaurants/<%= event.id %>?city=<%=local_area[:city]%>&state=<%=local_area[:state]%>&zip_code=<%=local_area[:zip_code]%>" method="post">
+            <% local_restaurants.each do |restaurant| %>
+              <img src="<%= restaurant.image_url if restaurant.respond_to?(:image_url)%>"/>
+              <input class="checkbox" type="checkbox" name="yelp_phone[<%=restaurant.name%>]" value="<%= restaurant.phone if restaurant.respond_to?(:phone) %>">
+                <p><%= restaurant.name %></p>
+            <% end %>
+          <input type="submit" value="Submit">
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
+
+
+<script type="text/javascript">
+  var limit = 3;
+  $('input.checkbox').on('change', function(evt) {
+    if($(this).siblings(':checked').length > limit) {
+      this.checked = false;
+    }
+  });
+</script>
