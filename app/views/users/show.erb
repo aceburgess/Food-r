@@ -8,11 +8,12 @@
     </div>
     <div class='divtop'>
     <%= gravitar(logged_user.email)%>
-      <div class='smalldivtop'
+    </div>
+    <div class='smalldivtop'>
         <form action='/users/<%= session[:user_id] %>/edit' method='put'>
         <button type="submit" class="btn btn-primary btn-xs">Edit Profile</button>
+        </form>
       </div>
-    </div>
     <div class='divtop'>
       <span class="glyphicon glyphicon-user"></span>
        <%= logged_user.name %>
@@ -25,7 +26,6 @@
       <li class="list-group-item"><%= group.name %></li>
       <% end %>
     </ul>
-  </form>
   <% end %>
   </div>
   <div class='col-md-3'>
