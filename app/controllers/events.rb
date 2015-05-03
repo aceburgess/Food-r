@@ -6,8 +6,7 @@ end
 
 get '/events/new' do
 	require_logged_in
-	current_user = logged_user
-	groups = Group.where(organizer_id: current_user.id)
+	groups = Group.where(organizer_id: logged_user.id)
 	erb :"/events/add", locals: { groups: groups }
 end
 
@@ -16,9 +15,7 @@ post '/event/create' do
 	params[:event][:event_on] = DateTime.parse("#{params[:event_date]}", "#{params[:event_time]}")
 	event = Event.new(params[:event])
 	return [500,"Couldn't create event #{params[:event][:title]}"] unless event.save
-	city = params[:city]
-	state = params[:state]
-	zip_code = params[:zip_code]
+	city, state, zip_code = location_hash(params).values
 	redirect :"/events/select_restaurants/#{event.id}?city=#{city}&state=#{state}&zip_code=#{zip_code}"
 end
 
@@ -35,26 +32,7 @@ post '/events/select_restaurants/:event_id' do
 	require_logged_in
 	local_area = location_hash params
 	event = Event.find(params[:event_id])
-	organizer = logged_user
-	params[:yelp_phone].each do |name, phone|
-		unless Restaurant.find_by(phone: phone)
-			current_restaurant = yelp_search_by_phone phone
-			new_restaurant = Restaurant.new
-			new_restaurant.name = current_restaurant.name
-			new_restaurant.business_id = current_restaurant.id
-			new_restaurant.phone = current_restaurant.phone
-			new_restaurant.url = current_restaurant.url
-			new_restaurant.address = current_restaurant.location.address.first
-			new_restaurant.location = convert_to_string local_area
-			new_restaurant.picture_url = current_restaurant.image_url
-			new_restaurant.save
-			new_vote = Vote.new
-			new_vote.restaurant_id = new_restaurant.id
-			new_vote.user_id = organizer.id
-			new_vote.event_id = event.id
-			new_vote.save
-		end
-	end
+	create_restaurants_and_votes params[:yelp_phone], local_area, event
 	redirect :"/event/#{params[:event_id]}"
 end
 
