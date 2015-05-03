@@ -1,28 +1,55 @@
-
 <form class="form_control" action="<%= action %>" method="post">
 	<% if defined?(event) %>
 		<input type="hidden" name="_method" value="put" />
 	<% end %>
-	<input type="text" name="event[title]" placeholder="Title" value="<%= event.title if defined?(event) %>" />
-	<input type="text" name="event[description]" placeholder="Description" value="<%= event.description if defined?(event) %>" />
-	<input type="text" class="datePicker" name="event_date" placeholder="Date of Event" value="<%= event.event_on.strftime("%m/%d/%Y") if defined?(event) %>" />
-	<input type="text" class="timePicker" name="event_time" placeholder="Hour of Event" value="<%= event.event_on.strftime("%H:%M") if defined?(event) %>" />
-	<input type="text" name="event[penalty]" placeholder="Penalty" value="<%= event.penalty if defined?(event) %>" />
-	<input type="text" name="city" placeholder="City">
-	<input type="text" name="state" placeholder="State">
-	<input type="text" name="zip_code" placeholder="Zip Code">
+	
+	<div class="form-group">
+		<input type="text" name="event[title]" placeholder="Title" value="<%= event.title if defined?(event) %>" class="form-control" />
+	</div>
+	
+	<div class="form-group">
+		<input type="text" name="event[description]" placeholder="Description" value="<%= event.description if defined?(event) %>" class="form-control" />
+	</div>
 
-	<select name="event[group_id]">
-		<% groups.each do |group| %>
-			<% selected = '' %>
-			<% if (defined?(event) && (group.id == event.group.id)) %>
-				<% selected = 'selected' %>
+	<div class="form-group">
+		<input type="text" class="datePicker form-control" name="event_date" placeholder="Date of Event" value="<%= event.event_on.strftime("%m/%d/%Y") if defined?(event) %>" />
+	</div>
+
+	<div class="form-group">
+		<input type="text" class="timePicker form-control" name="event_time" placeholder="Hour of Event" value="<%= event.event_on.strftime("%H:%M") if defined?(event) %>" />
+	</div>
+
+	<div class="form-group">
+		<input type="text" name="event[penalty]" placeholder="Penalty" value="<%= event.penalty if defined?(event) %>" class="form-control" />
+	</div>
+
+	<div class="form-group">
+		<input type="text" name="city" placeholder="City" class="form-control">
+	</div>
+
+	<div class="form-group">
+		<input type="text" name="state" placeholder="State" class="form-control">
+	</div>
+
+	<div class="form-group">
+		<input type="text" name="zip_code" placeholder="Zip Code" class="form-control">
+	</div>
+
+	<div class="form-group">
+		<select name="event[group_id]" class="form-control">
+			<% groups.each do |group| %>
+				<% selected = '' %>
+				<% if (defined?(event) && (group.id == event.group.id)) %>
+					<% selected = 'selected' %>
+				<% end %>
+				<option value="<%= group.id %>" <%= selected %> ><%= group.name %></option>
 			<% end %>
-			<option value="<%= group.id %>" <%= selected %> ><%= group.name %></option>
-		<% end %>
-	</select>
+		</select>
+	</div>
 
-	<input type="submit" value="<%= submit_label %>" />
+	<div class="form-group">
+		<input type="submit" value="<%= submit_label %>" class="form-control" />
+	</div>
 </form>
 
  <script>
