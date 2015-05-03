@@ -24,7 +24,7 @@ end
 
 get '/users' do
   require_logged_in
-  users = User.all()
+  users = User.all().order(:name)
   erb :'/users/all', locals: {users: users}
 end
 

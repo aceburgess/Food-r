@@ -1,33 +1,25 @@
-<div class="container" >
-	<blockquote>
-		<label>Title : </label> <%= event.title %></br>
-		<label>Description : </label><p><%= event.description %></p>
-		<label>Date : </label> <%= event.event_on.strftime("%m/%d/%Y %H:%M") %></br>
-		<label>Group name : </label> <%= event.group.name %></br>
+<div class="medium-wrapper center" >
+	<h3>Event Name : <%= event.title %></h3
+	<ul class='list-group'>
+		<li class='list-group-item'>Description : <%= event.description %></li>
+		<li class='list-group-item'>Date : <%= event.event_on.strftime("%m/%d/%Y %H:%M") %></li>
+		<li class='list-group-item'>Group name : <%= event.group.name %></li>
 
 		<% if vote %>
-			<label>Votes count : </label> <%= event.votes.count - event.restaurants.uniq.count %></br>
-		<% end %>
-	</blockquote>
-	<ul>
-		<% event.restaurants.uniq.each do |restaurant| %>
-			<li class="row">
-
-				<div class="col-md-8">
-					<a href="<%= restaurant.url %>"><h4><%= restaurant.name %></h4></a>
-				</div>
-				<% unless vote %>
-					<div class="col-md-4">
-						<form action="/event/<%= event.id %>/restaurant/<%= restaurant.id %>/vote" method="post" class="form-inline">
-							<div class="form-group">
-								<input type="submit" value="vote" class="form-control"/>
-							</div>
-						</form>
-					</div>
-				<% end %>
-			</li>
+			<li class='list-group-item'>Votes count : <%= event.votes.count - event.restaurants.uniq.count %></li>
 		<% end %>
 	</ul>
-
+	<ul>
+		<% event.restaurants.each do |restaurant| %>
+			<a href="<%= restaurant.url %>" ><h4><%= restaurant.name %></h4></a>
+			<% unless vote %>
+				<form action="/event/<%= event.id %>/restaurant/<%= restaurant.id %>/vote" method="post" class="form-inline">
+				<div class="form-group">
+					<input type="submit" value="vote" class="form-control"/>
+				</div>
+				</form>
+			<% end %>
+		<% end %>
+	</ul>
 </div>
 
