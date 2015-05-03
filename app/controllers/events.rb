@@ -1,6 +1,6 @@
 get '/events' do
 	require_logged_in
-	events = params[:search] ? Event.where([" title like ? " ,"%#{params[:search]}%"]) : Event.all
+	events = params[:search] ? Event.where([" lower(title) LIKE ? " ,"%#{params[:search].downcase}%"]) : Event.all
 	erb :"events/index" , locals: {events: events}
 end
 
