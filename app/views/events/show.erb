@@ -6,15 +6,15 @@
 		<label>Group name : </label> <%= event.group.name %></br>
 
 		<% if vote %>
-			<label>Votes count : </label> <%= event.votes.count %></br>
+			<label>Votes count : </label> <%= event.votes.count - event.restaurants.uniq.count %></br>
 		<% end %>
 	</blockquote>
 	<ul>
-		<% event.restaurants.each do |restaurant| %>
+		<% event.restaurants.uniq.each do |restaurant| %>
 			<li class="row">
 
 				<div class="col-md-8">
-					<a href="<%= restaurant.url %>" ><h4><%= restaurant.name %></h4></a>
+					<a href="<%= restaurant.url %>"><h4><%= restaurant.name %></h4></a>
 				</div>
 				<% unless vote %>
 					<div class="col-md-4">
