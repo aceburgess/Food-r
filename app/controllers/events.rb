@@ -6,8 +6,7 @@ end
 
 get '/events/new' do
 	require_logged_in
-	current_user = logged_user
-	groups = Group.where(organizer_id: current_user.id)
+	groups = Group.where(organizer_id: logged_user.id)
 	erb :"/events/add", locals: { groups: groups }
 end
 
