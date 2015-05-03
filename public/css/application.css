@@ -212,3 +212,16 @@ footer {
   margin: 0 auto;
   margin-bottom: 20px;
 }
+
+#myVid {
+    min-width: 100%;
+    min-height: auto;
+}
+
+#myVid {
+position: fixed; right: 0; bottom: 0;
+min-width: 100%; min-height: 100%;
+width: auto; height: auto; z-index: -100;
+background: url('freeway.jpg') no-repeat;
+background-size: cover;
+}
