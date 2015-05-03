@@ -63,8 +63,6 @@ get '/event/:id' do
 	event = Event.find_by(id: params[:id])
 	return [500,"Couldn't find event"] unless event
 	vote = Vote.find_by(user_id: logged_user.id, event_id: event.id)
-	p "vote result"
-	p vote
 	erb :"events/show", locals: { event: event , vote: vote}
 end
 
@@ -81,7 +79,7 @@ put '/event/:id' do
 	event = Event.find_by(id: params[:id])
 	return [500,"Couldn't find event"] unless event
 	event.update_attributes(params[:event])
-	redirect '/events/select_restaurants/#{event.id}'
+	redirect "/events/select_restaurants/#{event.id}"
 end
 
 delete '/event/:id' do
