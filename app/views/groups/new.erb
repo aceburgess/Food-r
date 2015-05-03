@@ -1,61 +1,81 @@
-<h1>Create a New Group</h1>
+<div class='container'>
+  <div class='col-md-3'>
+  </div>
+  <div class='col-md-6'>
+  <h1 text-align='center'>Create a New Group</h1>
+  <form id="group_form" method='post' action='/groups'>
+    <div class='divtop'>
+      <label for="name">Group Name:</label>
+      <input type='text' name='name' placeholder='Group Name Here' />
+    </div>
+    <div class='divtop'>
+      <div class='divbot'>
+      <label for="user_search">Member Name:</label>
+      <input type='text' id="user_search" placeholder='Member by Name or Email' />
+      <input type='hidden' id="user" name='members[]' />
+      </div>
+    </div>
+    <div class='btn-toolbar'></a>
+      <button type="button" class="btn btn-primary" id="add_user_btn" onclick="javascript:addUser()" value="add user" btn-sm />Add User</button>
+      <button type='submit' class="btn btn-success" btn-sm value='Create Group'  />Create Group </button>
+    </div>
 
+  </form>
 
-<form id="group_form" method='post' action='/groups'>
-  <input type='text' name='name' placeholder='group name' />
-  <input type='text' id="user_search" placeholder='type member names seperated by comas here' />
-  <input type='hidden' id="user" name='members[]' />
-  <input type="button" id="add_user_btn" onclick="javascript:addUser()" value="add user" />
-  <input type='submit'  value='Create Group' />
-</form>
+  <script type="text/javascript">
 
-<script type="text/javascript">
+  function addUser(){
+  	form = $("#group_form input");
+  	count = form.length
+  	name_id = "user_search_" + count;
+  	value_id = "user_" + count;
+    label = "<label for='user_search'>Member Name:</label>"
+    bot = "<div class='divbot'>"
+    bot2 = "</div>"
+  	name = "<input type='text' id='" + name_id + "' placeholder='Member by Name or Email' />";
+   	value = "<input type='hidden' id='" + value_id + "' name='members[]' />";
+   	$("#add_user_btn").before(bot + label + " "+ name + value + bot2);
+   	setClientAutoCompleteField(name_id,value_id,<%= users %>);
+  }
 
-function addUser(){
-	form = $("#group_form input");
-	count = form.length
-	name_id = "user_search_" + count;
-	value_id = "user_" + count;
-	name = "<input type='text' id='" + name_id + "' placeholder='type member names seperated by comas here' />";
- 	value = "<input type='hidden' id='" + value_id + "' name='members[]' />";
- 	$("#add_user_btn").before(name + value);
- 	setClientAutoCompleteField(name_id,value_id,<%= users %>);
-}
+  function setClientAutoCompleteField(fieldID,valueFieldID,options){
 
-function setClientAutoCompleteField(fieldID,valueFieldID,options){
+  	fieldID = '#'+fieldID;
+  	valueFieldID = '#' + valueFieldID;
+  	var optionArray = options; //jQuery.parseJSON(options);
+  	for(var i = 0; i < optionArray.length; i++){
+  		var label = optionArray[i].name + " " + optionArray[i].email;
+  		optionArray[i]['value'] = label;
+  	}
 
-	fieldID = '#'+fieldID;
-	valueFieldID = '#' + valueFieldID;
-	var optionArray = options; //jQuery.parseJSON(options);
-	for(var i = 0; i < optionArray.length; i++){
-		var label = optionArray[i].name + " " + optionArray[i].email;
-		optionArray[i]['value'] = label;	
-	}
+  	$( fieldID ).autocomplete({
+        minLength: 0,
+        source: optionArray,
+        focus: function( event, ui ) {
+        	var label = ui.item.name;
+        	$( fieldID ).val( label);
+          return false;
+        },
+        select: function( event, ui ) {
+        	var label = ui.item.name;
+        	$(fieldID).val( label);
+        	$(valueFieldID).val( ui.item.id);
 
-	$( fieldID ).autocomplete({
-      minLength: 0,
-      source: optionArray,
-      focus: function( event, ui ) {
-      	var label = ui.item.name;      							
-      	$( fieldID ).val( label);
-        return false;
-      },
-      select: function( event, ui ) {
-      	var label = ui.item.name;
-      	$(fieldID).val( label);
-      	$(valueFieldID).val( ui.item.id);
-      	    	
-        return false;
-     }
-    })
-    .data( "ui-autocomplete" )._renderItem = function( ul, item ) {
-    	var label = item.name;
-      return $( "<li>" )
-        .append( "<a>" + label + "</a>" )
-        .appendTo( ul );
-    };    
-}
+          return false;
+       }
+      })
+      .data( "ui-autocomplete" )._renderItem = function( ul, item ) {
+      	var label = item.name;
+        return $( "<li>" )
+          .append( "<a>" + label + "</a>" )
+          .appendTo( ul );
+      };
+  }
 
-setClientAutoCompleteField('user_search','user',<%= users %>);
+  setClientAutoCompleteField('user_search','user',<%= users %>);
 
-</script>
+  </script>
+  </div>
+    <div class='col-md-3'>
+    </div>
+</div>
