@@ -4,7 +4,7 @@
 		<label>Description : </label><p><%= event.description %></p>
 		<label>Date : </label> <%= event.event_on.strftime("%m/%d/%Y %H:%M") %></br>
 		<label>Group name : </label> <%= event.group.name %></br>
-		
+
 		<% if vote %>
 			<label>Votes count : </label> <%= event.votes.count %></br>
 		<% end %>
@@ -18,8 +18,8 @@
 				</div>
 				<% unless vote %>
 					<div class="col-md-4">
-						<form action="/event/<%= event.id %>/restaurant/<%= restaurant.id %>/vote" method="post" class="form-inline">	
-							<div class="form-group">			
+						<form action="/event/<%= event.id %>/restaurant/<%= restaurant.id %>/vote" method="post" class="form-inline">
+							<div class="form-group">
 								<input type="submit" value="vote" class="form-control"/>
 							</div>
 						</form>

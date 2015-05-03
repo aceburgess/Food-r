@@ -1,12 +1,14 @@
-<h3><%= group.name %></h3>
-<% if group.admin_id == logged_user.id %>
-<span><a href="/group/edit/<%= group.id %>">edit</a></span>
-<% end %>
-<h3>Group Admin: <%= group.admin.name %></h3>
-<h3>Group Organizer: <%= group.organizer.name %></h3>
-<h3>Members</h3>
-<ul>
-  <% group.members.each do |member| %>
-  <li><%= member.name %></li>
+<div class='medium-wrapper'>
+  <h3 class='group-show-heading'><a href='/group/<%= group.id%>'><%= group.name %></a></h3>
+  <% if group.admin_id == logged_user.id %>
+  <span><a href="/group/edit/<%= group.id %>">- edit group -</a></span>
   <% end %>
-</ul>
+  <h3>Group Admin: <a href='/users/<%= group.admin.id %>'><%= group.admin.name %></a></h3>
+  <h3>Group Organizer: <a href='/users/<%= group.organizer.id %>'><%= group.organizer.name %></a></h3>
+  <h3>Members</h3>
+  <ul>
+    <% group.members.each do |member| %>
+    <li><a href='/users/<%= member.id %>'><%= member.name %></a></li>
+    <% end %>
+  </ul>
+</div>

@@ -1,8 +1,17 @@
-<div class='groupContainer'>
-		<header><%= group.name %></br><small><strong>EVENTS</strong></small></header>
-		<ul>
-			<% group.events.each do |event| %>
-				<li><%= event.title %></li>
-			<% end %>
-		</ul>
-	</div>
+<div class='panel panel-default'>
+  <div class='panel-heading'>
+    <h3><a href='/group/<%= group.id %>'><%= group.name %></a></h3>
+  </div>
+  <div class='panel-body'>
+  <% if group.events.count > 0 %>
+  <p>EVENTS</p>
+  <ul>
+  	<% group.events.each do |event| %>
+  		<li><a href='/event/<%= event.id %>'><%= event.title %></a></li>
+  	<% end %>
+  </ul>
+  <% else %>
+  <p>No events scheduled</p>
+  <% end %>
+  </div>
+</div>

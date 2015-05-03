@@ -1,11 +1,19 @@
-<h1>Edit Your Group</h1>
-<form method='post' action='/group/<%= group.id %>'>
-  <input type='hidden' name='_method' value='put'/>
-  <input type='text' name='name' value='<%= group.name %>' />
-  <input type='text' name='members' value='<%= members_string %>' />
-  <input type='submit' value='Edit Group' />
+<div class='medium-wrapper'>
+  <h1>Edit Your Group</h1>
+  <form class='form control edit-form' method='post' action='/group/<%= group.id %>'>
+    <input type='hidden' name='_method' value='put'/>
+    <div class='form-group'>
+      <label>Group Name: </label>
+      <input type='text' name='name' value='<%= group.name %>' />
+    </div>
+    <div class='form-group'>
+      <label>Members: </label>
+      <input type='text' name='members' value='<%= members_string %>' />
+    </div>
+    <input class='btn btn-success inline-button' type='submit' value='Save Changes' />
+  </form>
+  <form class='edit-form' method='post' action='/group/<%= group.id %>'>
+    <input type='hidden' name='_method' value='delete'/>
+    <input class='btn btn-danger inline-button' type='submit' value='Delete Group' />
 </form>
-<form method='post' action='/group/<%= group.id %>'>
-  <input type='hidden' name='_method' value='delete'/>
-  <input type='submit' value='Delete Group' />
-</form>
+</div>
