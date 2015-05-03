@@ -1,10 +1,33 @@
 <div class='container'>
-<h2><%= logged_user.name %>'s Profile Page</h2>
-<% if session[:user_id] == logged_user.id %>
-<form action='/users/<%= session[:user_id] %>/edit' method='put'>
-  <input type='submit' value='Edit Profile'/>
-  <%= gravitar(logged_user.email)%>
-  <%= logged_user.email %>
-</form>
-<% end %>
+  <div class='col-md-3'>
+  </div>
+  <div class='col-md-6'>
+  <h1 class='text-center'><%= logged_user.name %>'s Profile Page</h1>
+  <% if session[:user_id] == logged_user.id %>
+    <div class='row'>
+    </div>
+    <div class='divtop'>
+    <%= gravitar(logged_user.email)%>
+      <div class='smalldivtop'
+        <form action='/users/<%= session[:user_id] %>/edit' method='put'>
+        <button type="submit" class="btn btn-primary btn-xs">Edit Profile</button>
+      </div>
+    </div>
+    <div class='divtop'>
+      <span class="glyphicon glyphicon-user"></span>
+       <%= logged_user.name %>
+    </div>
+      <span class="glyphicon glyphicon-envelope"></span>
+       <%= logged_user.email %>
+    <ul class="list-group">
+      <h3><%= logged_user.name %>'s Groups</h3>
+        <% logged_user.groups.each do |group| %>
+      <li class="list-group-item"><%= group.name %></li>
+      <% end %>
+    </ul>
+  </form>
+  <% end %>
+  </div>
+  <div class='col-md-3'>
+  </div>
 </div>
