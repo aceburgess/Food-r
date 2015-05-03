@@ -135,3 +135,38 @@ footer {
   font-weight: bold;
   margin: 0;
 }
+
+.event-form {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.event-heading {
+  width: 60%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+.medium-wrapper {
+  width: 40%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+.fifty-center {
+  width: 50%;
+  margin: 0 auto;
+}
+
+#event-search {
+  display: inline-block;
+  text-align: center;
+  float: right;
+}
+
+#event-index-heading {
+  margin-top: 25px;
+  display: inline-block;
+  margin-right: 50px;
+  text-align: center;
+}
