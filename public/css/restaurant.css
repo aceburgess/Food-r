@@ -1,0 +1,10 @@
+.restauranList {
+	list-style: none;
+}
+
+.restauranList>li {
+	display: inline-block;
+  width: 33%;
+  margin-bottom: 10px;
+  border-bottom: 1px dashed #ccc;
+}

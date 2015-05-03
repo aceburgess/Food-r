@@ -1,6 +1,9 @@
 get '/' do
-  # Look in app/views/index.erb
-  erb :index
+ 	if !is_authenticated?
+  		erb :index
+	else
+		redirect '/users/index'
+	end
 end
 
 get '/login' do

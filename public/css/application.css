@@ -94,3 +94,8 @@ footer {
 .divleft {
   padding-right: 20px
 }
+
+.right {
+  float: right !important;
+}
+

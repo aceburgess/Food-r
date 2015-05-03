@@ -1,36 +1,35 @@
 <div class="container">
+  <div class="col-md-4"></div>
   <div class="col-md-4">
+    <h2>Update <%= logged_user.name %>'s Settings</h2>
+    <form action="/users/<%=logged_user.id%>/update" method="post">
+      <input type="hidden" name="_method" value="put">
+      <div class="form-group">
+        <label for="name">Name:</label>
+      <input type="string" name="name" value="<%=logged_user.name%>" class="form-control">
+      </div>
+      <div class="form-group">
+      <label for="email">Email address:</label>
+      <input type="email" name="email" value="<%=logged_user.email%>" class="form-control">
+      </div>
+      <div class="form-group">
+      <label for="current_">Current Password:</label>
+      <input type="password" name="current_password" class="form-control">
+      </div>
+      <div class="form-group">
+      <label for="newpassword1">New Password:</label>
+      <input type="password" name="newpassword1" class="form-control">
+      </div>
+      <div class="form-group">
+      <label for="newpassword2">Retype New Password:</label>
+      <input type="password" name="newpassword2" class="form-control"><br>
+      </div>
+      <button type="submit" class="btn btn-primary">Update User Information</button>
+    </form><br>
+    <form action='/users/<%= logged_user.id %>/delete' method="get">
+      <button type="submit" class="btn btn-danger">Delete Your Account FOREVER</button>
+    </form>
   </div>
-  <div class="col-md-4">
-  <h2>Update <%= logged_user.name %>'s Settings</h2>
-  <form action="/users/<%=logged_user.id%>/update" method="post">
-    <input type="hidden" name="_method" value="put">
-    <div class="form-group">
-      <label for="name">Name:</label>
-    <input type="string" name="name" value="<%=logged_user.name%>" class="form-control">
-    </div>
-    <div class="form-group">
-    <label for="email">Email address:</label>
-    <input type="email" name="email" value="<%=logged_user.email%>" class="form-control">
-    </div>
-    <div class="form-group">
-    <label for="current_">Current Password:</label>
-    <input type="password" name="current_password" class="form-control">
-    </div>
-    <div class="form-group">
-    <label for="newpassword1">New Password:</label>
-    <input type="password" name="newpassword1" class="form-control">
-    </div>
-    <div class="form-group">
-    <label for="newpassword2">Retype New Password:</label>
-    <input type="password" name="newpassword2" class="form-control"><br>
-    </div>
-    <button type="submit" class="btn btn-primary">Update User Information</button>
-  </form><br>
-  <form action='/users/<%= logged_user.id %>/delete' method="get">
-  <button type="submit" class="btn btn-danger">Delete Your Account FOREVER</button>
-</form>
-  </div>
-  <div class="col-md-4">
-  </div>
-  </div>
+  <div class="col-md-4"></div>
+</div>
+<div class="row divtop" ><hr></div>

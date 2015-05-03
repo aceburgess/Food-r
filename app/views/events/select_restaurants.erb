@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="/css/restaurant.css">
 <div class="container">
   <form action="/events/select_restaurants/<%= event.id %>?city=<%=local_area[:city]%>&state=<%=local_area[:state]%>&zip_code=<%=local_area[:zip_code]%>" method="post">
   <% local_restaurants.each do |restaurant| %>
