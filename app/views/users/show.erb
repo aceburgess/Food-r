@@ -1,33 +1,31 @@
-<div class='container'>
-  <div class='col-md-3'>
-  </div>
-  <div class='col-md-6'>
-  <h1 class='text-center'><%= logged_user.name %>'s Profile Page</h1>
+<div class='medium-wrapper'>
+  <div class='col-md-12'>
+  <h1 class='text-center'><a href='/users/<%= find_user.id %>'><%= find_user.name %>'s</a> Profile Page</h1>
   <% if session[:user_id] == logged_user.id %>
     <div class='row'>
     </div>
     <div class='divtop'>
-    <%= gravitar(logged_user.email)%>
+    <%= gravitar(find_user.email)%>
     </div>
-    <div class='smalldivtop'>
+    <% if find_user == logged_user %>
+      <div class='smalldivtop'>
         <form action='/users/<%= session[:user_id] %>/edit' method='put'>
-        <button type="submit" class="btn btn-primary btn-xs">Edit Profile</button>
+          <button type="submit" class="btn btn-primary btn-xs">Edit Profile</button>
         </form>
       </div>
+    <% end %>
     <div class='divtop'>
       <span class="glyphicon glyphicon-user"></span>
-       <%= logged_user.name %>
+       <a href='/users/<%= find_user.id %>'><%= find_user.name %></a>
     </div>
       <span class="glyphicon glyphicon-envelope"></span>
-       <%= logged_user.email %>
+       <a href='mailto:<%= find_user.email %>'><%= find_user.email %></a>
     <ul class="list-group">
-      <h3><%= logged_user.name %>'s Groups</h3>
-        <% logged_user.groups.each do |group| %>
-      <li class="list-group-item"><%= group.name %></li>
+      <h3><a href='/users/<%= find_user.id %>'><%= find_user.name %>'s</a> Groups</h3>
+        <% find_user.groups.each do |group| %>
+      <li class="list-group-item"><a href='/group/<%= group.id %>'><%= group.name %></li>
       <% end %>
     </ul>
   <% end %>
-  </div>
-  <div class='col-md-3'>
   </div>
 </div>
