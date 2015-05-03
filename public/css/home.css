@@ -1,0 +1,5 @@
+ body {
+    background: url('/images/freeway.jpg') no-repeat left top fixed;
+    background-color: #95a5a6;
+    background-size: cover;
+  }

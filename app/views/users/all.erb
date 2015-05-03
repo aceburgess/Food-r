@@ -1,11 +1,16 @@
-<div class="container">
-  <% if params[:updated] %>
-  <%= "Your account has been updated" %>]
-  <% elsif params[:error] == 'ua' %>
-  <%= "Access Denied" %>
-  <% end %>
-  <h2>All Users</h2>
-  <% users.each do |user| %>
-  <%= user.name %>
-  <% end %>
+<div class="small-wrapper center">
+  <div class='panel panel-default'>
+    <% if params[:updated] %>
+    <%= "Your account has been updated" %>]
+    <% elsif params[:error] == 'ua' %>
+    <%= "Access Denied" %>
+    <% end %>
+
+    <ul>
+    <h2 class='list-heading'>All Users</h2>
+    <% users.each do |user| %>
+    <li class='list-heading'><a href='/users/<%= user.id %>'><%= user.name %></li>
+    <% end %>
+    </ul>
+  </div>
 </div>
