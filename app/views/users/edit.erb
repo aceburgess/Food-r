@@ -1,21 +1,36 @@
 <div class="container">
-  <h2>Edit <%= logged_user.name %>'s Settings</h2>
+  <div class="col-md-4">
+  </div>
+  <div class="col-md-4">
+  <h2>Update <%= logged_user.name %>'s Settings</h2>
   <form action="/users/<%=logged_user.id%>/update" method="post">
-    <h3>Update Your Information Here<h3> <br>
     <input type="hidden" name="_method" value="put">
-    Name: <br>
-    <input type="string" name="name" value="<%=logged_user.name%>"> <br>
-    Email: <br>
-    <input type="email" name="email" value="<%=logged_user.email%>"> <br>
-    Current Password: <br>
-    <input type="password" name="current_password" ><br>
-    New Password: <br>
-    <input type="password" name="newpassword1"><br>
-    New Password: <br>
-    <input type="password" name="newpassword2"><br>
-    <input type="submit" value="Update User Info">
+    <div class="form-group">
+      <label for="name">Name:</label>
+    <input type="string" name="name" value="<%=logged_user.name%>" class="form-control">
+    </div>
+    <div class="form-group">
+    <label for="email">Email address:</label>
+    <input type="email" name="email" value="<%=logged_user.email%>" class="form-control">
+    </div>
+    <div class="form-group">
+    <label for="current_">Current Password:</label>
+    <input type="password" name="current_password" class="form-control">
+    </div>
+    <div class="form-group">
+    <label for="newpassword1">New Password:</label>
+    <input type="password" name="newpassword1" class="form-control">
+    </div>
+    <div class="form-group">
+    <label for="newpassword2">Retype New Password:</label>
+    <input type="password" name="newpassword2" class="form-control"><br>
+    </div>
+    <button type="submit" class="btn btn-primary">Update User Information</button>
   </form><br>
   <form action='/users/<%= logged_user.id %>/delete' method="get">
-  <input type="submit" value="Delete Your Account FOREVER">
+  <button type="submit" class="btn btn-danger">Delete Your Account FOREVER</button>
 </form>
-</div>
+  </div>
+  <div class="col-md-4">
+  </div>
+  </div>
