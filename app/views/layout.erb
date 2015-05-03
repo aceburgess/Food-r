@@ -65,6 +65,10 @@
                     <li><a href="javascript:postUrl('/session/end')">Sign Out</a></li>
                   </ul>
                 </li>
+                <li><a class="navbar-brand prof-pic" href="/users/<%= logged_user.id %>">
+                  <img alt="User Picture" src="<%= gravitar_plain_url(logged_user.email) %>">
+                  </a>
+                </li>
               </ul>
               <% else %>
               <form method='post' action='/session' class="navbar-form navbar-right">

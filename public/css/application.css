@@ -1,3 +1,17 @@
+body {
+  background-image: url('/images/halftone.png');
+  padding-bottom: 100px;
+}
+
+li {
+  list-style: none;
+}
+
+.prof-pic img {
+  border-radius: 50%;
+}
+
+
 footer {
   color: #eee;
   background-color: #222;
