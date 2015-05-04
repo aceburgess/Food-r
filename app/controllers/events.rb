@@ -40,8 +40,17 @@ get '/event/:id' do
 	require_logged_in
 	event = Event.find_by(id: params[:id])
 	return [500,"Couldn't find event"] unless event
+	redirect "/event/#{event.id}/result" if event.winner
 	vote = Vote.find_by(user_id: logged_user.id, event_id: event.id)
 	erb :"events/show", locals: { event: event , vote: vote}
+end
+
+get '/event/:id/result' do
+	event = Event.find_by(id: params[:id])
+	redirect "/event/#{params[:id]}" if !event.winner
+	restaurant = Restaurant.where(id: event.winner)
+
+	erb :"events/results", locals: { restaurant: restaurant[0] }
 end
 
 get '/event/update/:id' do
