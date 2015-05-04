@@ -2,7 +2,7 @@ post '/session' do
   current_user = User.find_by(email: params[:email])
   if (current_user && current_user.authenticate(params[:password]))
     session[:user_id] = current_user.id
-    redirect '/users'
+    redirect '/events'
   else
     redirect '/?error=ua'
   end
