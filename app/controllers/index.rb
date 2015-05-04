@@ -1,4 +1,5 @@
 get '/' do
+  #zm: HighFive
  	is_authenticated? ? (redirect '/users/index') : (erb :index)
 end
 

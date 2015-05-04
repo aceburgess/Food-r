@@ -7,14 +7,22 @@ end
 get '/groups/new' do
   require_logged_in
   users = User.all
+
+  #ZM: wat?
   users_json = users.map{|user| Hash[id: user.id, name: user.name , email: user.email]}.to_json
+  
   erb :'groups/new', locals: { users: users_json}
 end
 
 post '/groups' do
+
   new_group = Group.create(name: params[:name], admin_id: logged_user.id, organizer_id: logged_user.id)
   member_objects = []
+
+  #ZM: Do not live modify the params hash 
   params[:members].delete("")
+
+  #ZM: This will throw an exepction if the ID is not found
   params[:members].each do |id|
     member = User.find(id)
     member_objects << member if member
@@ -23,6 +31,8 @@ post '/groups' do
   return [500, "You Must Add Valid Members to Your Group"] unless member_objects.length > 0
 
   new_group.members = member_objects
+
+  #ZM: What Happens if it does not save?
   new_group.save
 
   redirect '/groups'
@@ -45,6 +55,7 @@ get '/group/edit/:id' do
 
   members_string = ""
 
+  #ZM: This Feels funky.. You can probably just use a map and join on ", "
   group.members.each do |member|
     members_string += member.name
     members_string += ", " unless member == group.members.last
@@ -62,6 +73,8 @@ put '/group/:id' do
   split_string = params[:members].split(",").each {|member| member.strip!}
 
   member_objects = []
+  
+  #ZM: This Logic feels very anti-pattern. Let's see if we can make it better
   split_string.each do |name|
     member = User.find_by(name: name)
     member_objects << member if member
