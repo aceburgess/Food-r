@@ -1,7 +1,10 @@
+#AF: Look into Before Filters for controllers
+
 get '/events' do
 	require_logged_in
 
   #ZM: This line is wayyy confusing... Should probablybbe  amethod on the model.
+  #AF: Look into Scopes for Class Methods
 	events = params[:search] ? Event.where([" lower(title) LIKE ? " ,"%#{params[:search].downcase}%"]) : Event.all
 	erb :"events/index" , locals: {events: events}
 end

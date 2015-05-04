@@ -24,15 +24,14 @@ post '/groups' do
 
   #ZM: This will throw an exepction if the ID is not found
   params[:members].each do |id|
-    member = User.find(id)
-    member_objects << member if member
+    member_objects << User.find(id)
   end
 
-  return [500, "You Must Add Valid Members to Your Group"] unless member_objects.length > 0
+  return [500, "You Must Add Valid Members to Your Group"] if member_objects.empty?
 
   new_group.members = member_objects
 
-  #ZM: What Happens if it does not save?
+  #ZM: What Happens if it does not save? if valid? || if save
   new_group.save
 
   redirect '/groups'
@@ -56,6 +55,8 @@ get '/group/edit/:id' do
   members_string = ""
 
   #ZM: This Feels funky.. You can probably just use a map and join on ", "
+  #group.members.map{|x| x.name}.join(', ')
+
   group.members.each do |member|
     members_string += member.name
     members_string += ", " unless member == group.members.last
