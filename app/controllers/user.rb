@@ -34,11 +34,7 @@ end
 
 get '/users/:id/edit' do
   require_logged_in
-  if params[:id].to_i == logged_user.id
-    erb :'/users/edit'
-  else
-    "Stop trying to game the system"
-  end
+  params[:id].to_i == logged_user.id ? (erb :'/users/edit') : (return "Stop trying to game the system")
 end
 
 get '/users/:id/delete' do
