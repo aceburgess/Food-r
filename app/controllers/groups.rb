@@ -13,9 +13,6 @@ end
 
 post '/groups' do
   new_group = Group.create(name: params[:name], admin_id: logged_user.id, organizer_id: logged_user.id)
-
-  # split_string = params[:members].split(",").each {|member| member.strip!}
-
   member_objects = []
   params[:members].delete("")
   params[:members].each do |id|

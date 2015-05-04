@@ -1,18 +1,19 @@
-<div class='medium-wrapper center'>
+<div class="col-sm-3"></div>
+<div class='col-sm-6 center'>
   <h3 class='group-show-heading'><a href='/group/<%= group.id%>'><%= group.name %></a></h3>
   <% if group.admin_id == logged_user.id %>
   <span><a href="/group/edit/<%= group.id %>">- edit group -</a></span>
   <% end %>
-  <h3>Group Admin: <a href='/users/<%= group.admin.id %>'><%= group.admin.name %></a></h3>
   <h3>Group Organizer: <a href='/users/<%= group.organizer.id %>'><%= group.organizer.name %></a></h3>
   <h3>Members</h3>
-  <ul>
+  <ul class="list-group">
     <% if group.members.length < 1 %>
       <li>Group has no members</li>
     <% else %>
       <% group.members.each do |member| %>
-        <li><a href='/users/<%= member.id %>'><%= member.name %></a></li>
+        <li class="list-group-item"><a href='/users/<%= member.id %>'><%= member.name %></a></li>
       <% end %>
     <% end %>
   </ul>
 </div>
+<div class="col-sm-3"></div>

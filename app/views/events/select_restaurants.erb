@@ -2,24 +2,18 @@
 <div class="container">
   <form action="/events/select_restaurants/<%= event.id %>?city=<%=local_area[:city]%>&state=<%=local_area[:state]%>&zip_code=<%=local_area[:zip_code]%>" method="post">
   <% local_restaurants.each do |restaurant| %>
-    <div class="col-sm-1 thumb">
+    <% next unless restaurant.respond_to?(:phone)%>
+    <div class="col-sm-1 thumb rest-list">
       <input type="checkbox" class="chk" id="<%= restaurant.id %>" name="yelp_phone[<%=restaurant.name%>]" value="<%= restaurant.phone if restaurant.respond_to?(:phone) %>" />
       <label for="<%= restaurant.id %>"><img class="img" src="<%= restaurant.image_url if restaurant.respond_to?(:image_url)%>"/></label>
-      <p><%= restaurant.name %></p>
+      <p><a href="<%=restaurant.url%>" target="_blank"><%= restaurant.name %></a></p>
     </div>
     <% end %>
-    <div class="submit">
-      <input class="submit" type="submit" value="Submit">
+    <div class="row"></div>
+    <div class="row submit-row">
+        <div class="submit">
+          <input class="submit" type="submit" value="Submit">
+        </div>
     </div>
   </form>
 </div>
-
-
-<script type="text/javascript">
-  var limit = 3;
-  $('input.chk').on('change', function(evt) {
-    if($(this).siblings(':checked').length > limit) {
-      this.checked = false;
-    }
-  });
-</script>

@@ -1,18 +1,17 @@
 <div class="medium-wrapper center" >
 	<h3>Event Name : <%= event.title %></h3
 	<ul class='list-group'>
-		<li class='list-group-item'>Description : <%= event.description %></li>
-		<li class='list-group-item'>Date : <%= event.event_on.strftime("%m/%d/%Y %H:%M") %></li>
-		<li class='list-group-item'>Group name : <%= event.group.name %></li>
+		<li class='list-group-item'><%= event.event_on.strftime("%A %B %d, %Y") %></li>
+		<li class='list-group-item'>Group: <%= event.group.name %></li>
 
 		<% if vote %>
-			<li class='list-group-item'>Votes count : <%= event.votes.count - event.restaurants.uniq.count %></li>
+			<li class='list-group-item'>Votes: <%= event.votes.count - event.restaurants.uniq.count %></li>
 		<% end %>
 	</ul>
 	<ul>
-		<% event.restaurants.each do |restaurant| %>
-			<a href="<%= restaurant.url %>" ><h4><%= restaurant.name %></h4></a>
-			<% unless vote %>
+		<% event.restaurants.uniq.each do |restaurant| %>
+			<a href="<%= restaurant.url %>" target="_blank"><h4><%= restaurant.name %></h4></a>
+			<% unless vote || !event.group.members.include?(logged_user) %>
 				<form action="/event/<%= event.id %>/restaurant/<%= restaurant.id %>/vote" method="post" class="form-inline">
 				<div class="form-group">
 					<input type="submit" value="vote" class="form-control"/>

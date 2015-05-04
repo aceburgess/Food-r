@@ -4,7 +4,7 @@ class Event < ActiveRecord::Base
   has_many :restaurants, through: :votes
 
   def check_winner
-    (self.votes.count - self.restaurants.uniq.count) >= (self.group.members.count - 1 )
+    (self.votes.count - self.restaurants.uniq.count) >= (self.group.members.count)
   end
 
   def winning_id

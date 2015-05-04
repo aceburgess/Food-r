@@ -12,7 +12,7 @@ end
 
 post '/event/create' do
 	require_logged_in
-	params[:event][:event_on] = DateTime.parse("#{params[:event_date]}", "#{params[:event_time]}")
+	params[:event][:event_on] = DateTime.parse("#{params[:event_date]}")
 	event = Event.new(params[:event])
 	return [500,"Couldn't create event #{params[:event][:title]}"] unless event.save
 	city, state, zip_code = location_hash(params).values

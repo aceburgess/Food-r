@@ -1,7 +1,7 @@
 helpers do
 
-  def create_restaurants_and_votes phone, local_area, event
-    params[:yelp_phone].each do |name, phone|
+  def create_restaurants_and_votes names_and_phones, local_area, event
+    names_and_phones.each do |name, phone|
       unless Restaurant.find_by(phone: phone)
         current_restaurant = yelp_search_by_phone phone
         new_restaurant = create_restaurant current_restaurant, local_area

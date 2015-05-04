@@ -1,5 +1,4 @@
 get '/users/create' do
-  require_logged_in
   erb :'/users/new'
 end
 
@@ -8,11 +7,9 @@ get '/users/index' do
   groups_in = logged_user.groups
   organized_groups = Group.where(organizer_id: logged_user.id)
   erb :"users/index", locals:{ groups: groups_in, organized_groups: organized_groups}
-
 end
 
-post '/users' do
-  require_logged_in
+post '/signup' do
   new_user = User.new(user_params(params[:user]))
   if new_user.save
     session[:user_id] = new_user.id
@@ -37,11 +34,7 @@ end
 
 get '/users/:id/edit' do
   require_logged_in
-    if params[:id].to_i == logged_user.id
-      erb :'/users/edit'
-    else
-      "Stop trying to game the system"
-    end
+  params[:id].to_i == logged_user.id ? (erb :'/users/edit') : (return "Stop trying to game the system")
 end
 
 get '/users/:id/delete' do
@@ -64,15 +57,4 @@ put '/users/:id/update' do
     logged_user.password=(params[:newpassword1])
   end
   redirect '/users?updated=true'
-end
-
-# Validation for the creation of a new User object
-def user_params(params)
-  params.each_with_object({}) do |(key,value), obj|
-    obj[key] = value if valid_params.include?(key.to_sym)
-  end
-end
-
-def valid_params
-  [:name, :email, :password]
 end

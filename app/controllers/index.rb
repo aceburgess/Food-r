@@ -1,9 +1,5 @@
 get '/' do
- 	if !is_authenticated?
-  		erb :index
-	else
-		redirect '/users/index'
-	end
+ 	is_authenticated? ? (redirect '/users/index') : (erb :index)
 end
 
 get '/login' do

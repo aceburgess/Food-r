@@ -1,4 +1,6 @@
-<h2> Type in your password to delete account </h2>
+<div class="container">
+  <div class="row" >
+    <h2> Type in your password to delete account </h2>
     <form method="post" action='/users/<%= logged_user.id %>/delete '>
       <input type="hidden" name="_method" value="delete">
       <input type="password" name="password" placeholder='password'>
@@ -7,3 +9,5 @@
     <form method="get" action='/users/<%= logged_user.id %>/edit'>
       <input type='submit' value='Back'/>
     </form>
+  </div>
+</div>
