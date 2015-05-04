@@ -1,4 +1,5 @@
 <div class="small-wrapper center">
+  <h1 class='text-center'>All Users</h1>
   <div class='panel panel-default'>
     <% if params[:updated] %>
       <p>Your account has been updated</p>
@@ -6,10 +7,9 @@
       <p>Access Denied</p>
     <% end %>
 
-    <h2 class='list-heading'>All Users</h2>
-    <ul>
+    <ul class="list-group">
       <% users.each do |user| %>
-        <li class='list-heading'><a href='/users/<%= user.id %>'><%= user.name %></li>
+        <li class='list-group-item'><a href='/users/<%= user.id %>'><%= user.name %></a></li>
       <% end %>
     </ul>
   </div>
