@@ -15,5 +15,4 @@ post '/event/:e_id/restaurant/:r_id/vote' do
 	else
 		redirect "/event/#{event.id}"
 	end
->>>>>>> Implement Voting Results create migration for events winner
 end
