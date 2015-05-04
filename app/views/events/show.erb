@@ -10,8 +10,8 @@
 	</ul>
 	<ul>
 		<% event.restaurants.uniq.each do |restaurant| %>
-			<a href="<%= restaurant.url %>" ><h4><%= restaurant.name %></h4></a>
-			<% unless vote %>
+			<a href="<%= restaurant.url %>" target="_blank"><h4><%= restaurant.name %></h4></a>
+			<% unless vote || !event.group.members.include?(logged_user) %>
 				<form action="/event/<%= event.id %>/restaurant/<%= restaurant.id %>/vote" method="post" class="form-inline">
 				<div class="form-group">
 					<input type="submit" value="vote" class="form-control"/>
