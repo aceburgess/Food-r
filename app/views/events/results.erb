@@ -1,4 +1,8 @@
 <div class='medium-wrapper center'>
-<h2>You have a winner <%= restaurant.name %></h2>
-<img class='img' src="<%= restaurant.picture_url %>" />
+  <h2>You have a winner <%= restaurant.name %></h2>
+  <img class='img' src="<%= restaurant.picture_url %>" />
+  <h3><%= event.title %> on: <%= event.event_on.strftime("%m/%d/%Y") %></h3>
+  <h3><%= restaurant.address %></h3>
+  <h3><%= restaurant.location %></h3>
+  <h3><%= restaurant.phone %></h3>
 </div>

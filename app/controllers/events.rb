@@ -50,7 +50,7 @@ get '/event/:id/result' do
 	redirect "/event/#{params[:id]}" if !event.winner
 	restaurant = Restaurant.where(id: event.winner)
 
-	erb :"events/results", locals: { restaurant: restaurant[0] }
+	erb :"events/results", locals: { restaurant: restaurant[0], event: event }
 end
 
 get '/event/update/:id' do
