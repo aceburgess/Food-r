@@ -34,8 +34,23 @@ underground = Group.create(
   organizer_id: 2
 )
 
+dbc = Group.create(
+  name: 'Dev Bootcamp',
+  admin_id: 3,
+  organizer_id: 3
+)
+
+coding = Group.create(
+  name: 'Coding Champz Basketball Team',
+  admin_id: 4,
+  organizer_id: 4
+)
+
 underground.members << [luis, brendan, sherman]
-phase_2 << [ace, luis, brendan]
+phase_2.members << [ace, luis, brendan]
+dbc.members << [ace, brendan, sherman]
+coding.members << [ace, luis, sherman]
+
 
 
 
