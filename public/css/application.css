@@ -92,7 +92,7 @@ footer {
   color: #eee;
   background-color: rgba(10, 10, 10, 0.8);
   height: 30px;
-  position: fixed;
+  position: absolute;
   bottom: 0;
   width: 100%;
 }
