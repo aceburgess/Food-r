@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
   has_many :votes
   has_many :restaurants, through: :votes
 
+  validates :email, uniqueness: true
+
   def password
     @password ||= Password.new(password_hash)
   end
