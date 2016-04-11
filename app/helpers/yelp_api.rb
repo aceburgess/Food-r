@@ -1,3 +1,4 @@
+#AF: ENV file
 Yelp.client.configure do |config|
   config.consumer_key = ENV['CONSUMER_KEY']
   config.consumer_secret = ENV['CONSUMER_SECRET']
@@ -5,6 +6,7 @@ Yelp.client.configure do |config|
   config.token_secret = ENV['TOKEN_SECRET']
 end
 
+#ZM: Exract all of this logic out into a NON AR Inherited Model
 def location_hash(params = {})
   city = params[:city]
   state = params[:state]

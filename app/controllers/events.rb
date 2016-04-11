@@ -1,5 +1,10 @@
+#AF: Look into Before Filters for controllers
+
 get '/events' do
 	require_logged_in
+
+  #ZM: This line is wayyy confusing... Should probablybbe  amethod on the model.
+  #AF: Look into Scopes for Class Methods
 	events = params[:search] ? Event.where([" lower(title) LIKE ? " ,"%#{params[:search].downcase}%"]) : Event.all
 	erb :"events/index" , locals: {events: events}
 end
@@ -19,15 +24,20 @@ post '/event/create' do
 	redirect :"/events/select_restaurants/#{event.id}?city=#{city}&state=#{state}&zip_code=#{zip_code}"
 end
 
+#ZM: Route Name seems off. '/events/:event_id/select_resturants
 get '/events/select_restaurants/:event_id' do
 	require_logged_in
 	event = Event.find(params[:event_id])
 	return [500, "Couldn't find event"] unless event
-	local_area = location_hash params
+
+  #ZM: What is this line of code doing?	
+  local_area = location_hash params
+  
 	local_restaurants = yelp_search( local_area )
 	erb :"/events/select_restaurants", locals: { event: event, local_restaurants: local_restaurants, local_area: local_area}
 end
 
+#ZM: RouteName is off
 post '/events/select_restaurants/:event_id' do
 	require_logged_in
 	local_area = location_hash params
